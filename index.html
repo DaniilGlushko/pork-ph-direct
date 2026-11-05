@@ -4,147 +4,485 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Свинина на Филиппины напрямую</title>
+<title>Свинина на Филиппины: калькулятор</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f7f5f0; --card: #fffefb; --ink: #14213d; --text: #3d4a5c; --muted: #6b7686;
-  --line: #e2ded5; --accent: #b4501a; --ok: #1f7a4d; --ok-bg: #e5f3ea; --neg: #b3261e; --neg-bg: #fbe9e7;
-  --head: #14213d; --head-ink: #f7f5f0;
+  --bg: #f4f1ea; --card: #fffdf8; --ink: #13203a; --text: #3b4658; --muted: #717b8a; --line: #e3ddd1;
+  --accent: #c2541b; --accent-soft: #fbe7da; --good: #17784a; --good-soft: #dff2e7; --bad: #b3261e; --bad-soft: #fbe5e2;
+  --hero: #13203a; --hero-ink: #f6f3ec; --hero-muted: #a9b4c6;
+  --s1: #4c6a92; --s2: #8aa1bf; --s3: #c9a46a; --s4: #b9b2a5; --s5: #17784a;
+  --track: #e3ddd1;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #11161f; --card: #19202c; --ink: #eef1f6; --text: #c9d1dc; --muted: #8b96a6;
-    --line: #2a3342; --accent: #f2a65a; --ok: #6fd39c; --ok-bg: #173527; --neg: #ff8a80; --neg-bg: #3a1c1a;
-    --head: #0b0f16; --head-ink: #eef1f6;
+    --bg: #0f141c; --card: #171e29; --ink: #eef2f7; --text: #c8d0db; --muted: #8a95a5; --line: #283141;
+    --accent: #f2994a; --accent-soft: #3a2616; --good: #5fd08f; --good-soft: #143223; --bad: #ff8a80; --bad-soft: #3b1b19;
+    --hero: #0a0e14; --hero-ink: #eef2f7; --hero-muted: #8a95a5;
+    --s1: #6f8fbb; --s2: #4d6383; --s3: #b48f55; --s4: #5d5a54; --s5: #5fd08f;
+    --track: #283141;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #11161f; --card: #19202c; --ink: #eef1f6; --text: #c9d1dc; --muted: #8b96a6;
-  --line: #2a3342; --accent: #f2a65a; --ok: #6fd39c; --ok-bg: #173527; --neg: #ff8a80; --neg-bg: #3a1c1a;
-  --head: #0b0f16; --head-ink: #eef1f6;
+  --bg: #0f141c; --card: #171e29; --ink: #eef2f7; --text: #c8d0db; --muted: #8a95a5; --line: #283141;
+  --accent: #f2994a; --accent-soft: #3a2616; --good: #5fd08f; --good-soft: #143223; --bad: #ff8a80; --bad-soft: #3b1b19;
+  --hero: #0a0e14; --hero-ink: #eef2f7; --hero-muted: #8a95a5;
+  --s1: #6f8fbb; --s2: #4d6383; --s3: #b48f55; --s4: #5d5a54; --s5: #5fd08f;
+  --track: #283141;
 }
 * { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 Inter, system-ui, -apple-system, sans-serif; }
-header { background: var(--head); color: var(--head-ink); padding: 40px 16px 32px; }
-.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
-header .wrap { padding: 0; }
-.kicker { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; opacity: .7; margin: 0 0 8px; }
-h1 { font-size: clamp(26px, 4.5vw, 40px); line-height: 1.15; margin: 0 0 12px; font-weight: 700; }
-header p { margin: 0; max-width: 760px; opacity: .85; }
-h2 { color: var(--ink); font-size: 22px; margin: 40px 0 8px; }
-.lead { margin: 0 0 16px; max-width: 760px; }
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 24px; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
-.card .big { font-size: 30px; font-weight: 700; color: var(--ink); line-height: 1.1; }
-.card .big.acc { color: var(--accent); }
-.card p { margin: 6px 0 0; font-size: 14px; }
-.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
-table { border-collapse: collapse; width: 100%; font-size: 14px; }
-th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-thead th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; }
-tbody th { color: var(--ink); font-weight: 600; white-space: nowrap; }
-tbody th small { display: block; font-weight: 400; color: var(--muted); }
-td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
-td.ok { color: var(--ok); background: var(--ok-bg); font-weight: 600; }
-td.neg { color: var(--neg); }
-td.muted { color: var(--muted); }
-td.src { font-size: 12px; color: var(--muted); min-width: 220px; }
-tr.need td, tr.need th { background: var(--bg); font-weight: 600; color: var(--ink); }
-tr.need small { font-weight: 400; color: var(--muted); }
-.note { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
-ul { padding-left: 20px; margin: 8px 0; }
-li { margin: 6px 0; }
-.box { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 8px; padding: 14px 16px; margin: 16px 0; }
-a { color: var(--accent); }
-footer { margin: 48px 0 40px; font-size: 13px; color: var(--muted); }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
 b, strong { color: var(--ink); }
+
+/* Hero */
+.hero { background: var(--hero); color: var(--hero-ink); padding: 32px 0 36px; }
+.hero b { color: var(--hero-ink); }
+.kicker { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--hero-muted); margin: 0 0 10px; }
+.hero h1 { font-size: clamp(24px, 4vw, 36px); line-height: 1.15; margin: 0 0 24px; font-weight: 800; max-width: 820px; }
+.goal { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+@media (max-width: 760px) { .goal { grid-template-columns: 1fr; } }
+.goal-box { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 20px; }
+.goal-box .lbl { font-size: 14px; color: var(--hero-muted); margin: 0 0 4px; }
+.goal-val { font-size: clamp(36px, 7vw, 56px); font-weight: 800; line-height: 1; color: var(--hero-ink); font-variant-numeric: tabular-nums; }
+.goal-val small { font-size: .45em; font-weight: 600; color: var(--hero-muted); }
+.goal-res .goal-val { color: var(--accent); }
+.goal-sub { margin-top: 10px; font-size: 15px; color: var(--hero-ink); }
+.goal-sub span { color: var(--hero-muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chip { border: 1px solid rgba(255,255,255,.18); background: transparent; color: var(--hero-ink); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.containers { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 14px; min-height: 18px; }
+.ctr { width: 22px; height: 12px; border-radius: 2px; background: var(--accent); opacity: .9; }
+.ctr.part { opacity: .4; }
+.ctr-more { font-size: 12px; color: var(--hero-muted); align-self: center; margin-left: 4px; }
+
+/* Ranges */
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 28px; background: transparent; margin: 6px 0 0; cursor: pointer; }
+input[type=range]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(to right, var(--accent) var(--p, 50%), var(--track) var(--p, 50%)); }
+input[type=range]::-moz-range-track { height: 6px; border-radius: 3px; background: var(--track); }
+input[type=range]::-moz-range-progress { height: 6px; border-radius: 3px; background: var(--accent); }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 3px solid var(--accent); margin-top: -8px; box-shadow: 0 1px 4px rgba(0,0,0,.25); }
+input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 3px solid var(--accent); }
+.hero input[type=range] { --track: rgba(255,255,255,.15); }
+
+/* Sections */
+h2 { color: var(--ink); font-size: 22px; margin: 0 0 4px; }
+.sec { margin-top: 32px; }
+.sec-lead { margin: 0 0 16px; color: var(--muted); font-size: 15px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+.grid2 { display: grid; grid-template-columns: 1.05fr 1fr; gap: 16px; }
+@media (max-width: 860px) { .grid2 { grid-template-columns: 1fr; } }
+
+.presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.preset { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 10px; padding: 8px 12px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; text-align: left; }
+.preset small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+.preset:hover { border-color: var(--accent); }
+.preset[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+
+.ctl { padding: 12px 0; border-top: 1px solid var(--line); }
+.ctl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.ctl-name { font-weight: 600; color: var(--ink); font-size: 15px; }
+.ctl-val { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ctl-hint { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.seg { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.seg button { flex: 1 1 0; min-width: 64px; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 8px; padding: 8px 6px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+.seg button small { display: block; font-weight: 400; font-size: 11px; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.seg button[aria-pressed="true"] small { color: rgba(255,255,255,.85); }
+
+/* Unit economics */
+.kg-big { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+.kg-big .v { font-size: 44px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.kg-big .v.good { color: var(--good); } .kg-big .v.bad { color: var(--bad); }
+.kg-big .u { color: var(--muted); }
+.bar { display: flex; height: 44px; border-radius: 10px; overflow: hidden; margin: 18px 0 10px; background: var(--track); }
+.bar > div { height: 100%; transition: width .2s; min-width: 0; }
+.legend { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+.legend li { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+.legend li:last-child { border-bottom: 0; font-weight: 700; color: var(--ink); }
+.legend .sw { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+.legend .nm { flex: 1; }
+.legend .vv { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.legend .vv small { color: var(--muted); font-weight: 400; margin-left: 6px; }
+.warn { margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: var(--accent-soft); color: var(--ink); font-size: 14px; display: none; }
+
+/* KPI */
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+@media (max-width: 860px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.kpi .l { font-size: 13px; color: var(--muted); }
+.kpi .v { font-size: clamp(20px, 3vw, 26px); font-weight: 800; color: var(--ink); line-height: 1.15; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.kpi .s { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* Chart */
+.chart-wrap { position: relative; }
+svg.chart { width: 100%; height: auto; display: block; touch-action: none; }
+.chart text { fill: var(--muted); font-size: 12px; font-family: Inter, system-ui, sans-serif; }
+@media (max-width: 600px) { .chart text { font-size: 20px; } }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--card); font-size: 13px; padding: 6px 10px; border-radius: 8px; white-space: nowrap; transform: translate(-50%, -130%); display: none; font-variant-numeric: tabular-nums; }
+
+/* Table */
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-size: 12px; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); font-weight: 600; }
+tbody tr { cursor: pointer; }
+tbody tr:hover td { background: var(--accent-soft); }
+td.hit { color: var(--good); font-weight: 700; }
+tr.sel td { background: var(--accent-soft); font-weight: 700; }
+
+.notes { font-size: 13px; color: var(--muted); }
+.notes ul { padding-left: 18px; margin: 8px 0 0; }
+.notes li { margin: 4px 0; }
+.notes a { color: var(--accent); }
+footer { margin: 40px 0 32px; font-size: 12px; color: var(--muted); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 </style>
 </head>
 <body>
-<header><div class="wrap">
-<p class="kicker">Talina · Филиппины · расчёт на 5 ноября 2026</p>
-<h1>Свинина на Филиппины без посредников: сколько можно заработать</h1>
-<p>Схема: своя компания в Маниле покупает у завода по цене CFR Манила и сама продаёт мясо филиппинским переработчикам и оптовикам. Ей достаётся то, что сейчас забирают трейдер и филиппинский импортёр. Прибыль ниже считается после пошлины, расходов в порту, оборотных денег, содержания компании и налога на прибыль 25%.</p>
-</div></header>
+
+<section class="hero">
+ <div class="wrap">
+  <p class="kicker">Talina · экспорт свинины на Филиппины · своя компания в Маниле</p>
+  <h1>Сколько нужно поставить на Филиппины, чтобы заработать столько, сколько хотим</h1>
+  <div class="goal">
+   <div class="goal-box">
+    <p class="lbl">Хотим заработать за год, чистыми</p>
+    <div class="goal-val"><span id="goalOut">100</span> <small>млн ₽</small></div>
+    <input type="range" id="goal" min="10" max="1000" step="10" value="100" aria-label="Цель по чистой прибыли, млн рублей">
+    <div class="chips" id="goalChips">
+     <button class="chip" data-v="50">50 млн</button>
+     <button class="chip" data-v="100">100 млн</button>
+     <button class="chip" data-v="250">250 млн</button>
+     <button class="chip" data-v="500">500 млн</button>
+     <button class="chip" data-v="1000">1 млрд</button>
+    </div>
+   </div>
+   <div class="goal-box goal-res">
+    <p class="lbl">Нужно поставить за год</p>
+    <div class="goal-val"><span id="needT">—</span> <small>тонн</small></div>
+    <div class="goal-sub"><b id="needC">—</b> <span>контейнеров по 27 т в месяц</span></div>
+    <div class="containers" id="ctrs" aria-hidden="true"></div>
+    <div class="goal-sub" style="margin-top:12px"><span>Завод получит за мясо</span> <b id="plantRev">—</b></div>
+   </div>
+  </div>
+ </div>
+</section>
 
 <main class="wrap">
-<div class="cards">
-  <div class="card"><div class="big acc">≈ 3 100 т в год</div>
-    <p>нужно продать, чтобы получить <b>100 млн ₽ чистыми</b>. Это ≈ 10 контейнеров в месяц, в 4 раза больше темпа 2026 года</p></div>
-  <div class="card"><div class="big">≈ 19 млн ₽</div>
-    <p>чистыми в год при темпе 2026 года: 750 т, около 2 контейнеров в месяц</p></div>
-  <div class="card"><div class="big">≈ 46 ₽ с кг</div>
-    <p>остаётся своей компании (₱36) на ассортименте 2026 года (78% щековина, 22% грудинка) по ценам 2026 года</p></div>
-</div>
 
-<div class="box"><b>Главное условие:</b> цена завода должна быть на уровне фактических отгрузок 2026 года (щековина ≈ $1,89 за кг CFR). По прайсу от 16 октября (щековина $3,10) своя компания на щековине, грудинке, лопатке и окороке работает в минус: импортная заморозка в Маниле продаётся дешевле. Подробно — в таблице по позициям ниже.</div>
+ <section class="sec">
+  <h2>Экономика одного килограмма</h2>
+  <p class="sec-lead">Выберите продукт или двигайте ползунки. Все цифры на странице пересчитываются сразу.</p>
+  <div class="grid2">
+   <div class="card">
+    <div class="presets" id="presets"></div>
+    <div class="ctl">
+     <div class="ctl-head"><span class="ctl-name">Цена завода, CFR Манила</span><span class="ctl-val" id="cfrOut"></span></div>
+     <input type="range" id="cfr" min="1" max="3" step="0.01" aria-label="Цена завода, долларов за кг">
+     <div class="ctl-hint">сколько своя компания платит заводу за 1 кг с доставкой в Манилу</div>
+    </div>
+    <div class="ctl">
+     <div class="ctl-head"><span class="ctl-name">Цена продажи в Маниле, опт</span><span class="ctl-val" id="sellOut"></span></div>
+     <input type="range" id="sell" min="180" max="380" step="1" aria-label="Цена продажи, песо за кг">
+     <div class="ctl-hint">сколько платят филиппинские переработчики и оптовики за 1 кг заморозки</div>
+    </div>
+    <div class="ctl">
+     <div class="ctl-head"><span class="ctl-name">Ввозная пошлина</span><span class="ctl-val" id="dutyOut"></span></div>
+     <div class="seg" id="duty">
+      <button data-v="0.15">15%<small>в квоте MAV</small></button>
+      <button data-v="0.25">25%<small>вне квоты</small></button>
+     </div>
+    </div>
+    <div class="ctl">
+     <div class="ctl-head"><span class="ctl-name">Порт, брокер, холодильник, доставка</span><span class="ctl-val" id="costOut"></span></div>
+     <input type="range" id="cost" min="5" max="40" step="1" aria-label="Расходы в Маниле, песо за кг">
+    </div>
+   </div>
 
-<h2>Тонны → чистая прибыль за год, млн ₽</h2>
-<p class="lead">Ассортимент 2026 года по ценам 2026 года. Зелёным — 100 млн ₽ и больше. Колонки показывают, как меняется ответ при другой цене продажи щековины и другой пошлине.</p>
-<div class="scroll"><table>
-<thead><tr><th>Тонн в год</th><th>Контейнеров в месяц</th><th>Базовый: квота 15%, щековина ₱210</th><th>Щековина продаётся по ₱250</th><th>Без квоты: пошлина 25%</th><th>Пошлину поднимут до 30%</th></tr></thead>
-<tbody>
-<tr><th scope="row">376 <small>как за полгода 2026</small></th><td class="num">1,2</td><td class="num ">6</td><td class="num ">17</td><td class="num ">1</td><td class="num neg">−2</td></tr>
-<tr><th scope="row">750 <small>темп 2026</small></th><td class="num">2,3</td><td class="num ">19</td><td class="num ">42</td><td class="num ">9</td><td class="num ">4</td></tr>
-<tr><th scope="row">1 500</th><td class="num">4,6</td><td class="num ">45</td><td class="num ">90</td><td class="num ">25</td><td class="num ">15</td></tr>
-<tr><th scope="row">2 500</th><td class="num">7,7</td><td class="num ">80</td><td class="num ok">154</td><td class="num ">46</td><td class="num ">30</td></tr>
-<tr><th scope="row">3 500</th><td class="num">10,8</td><td class="num ok">114</td><td class="num ok">219</td><td class="num ">68</td><td class="num ">44</td></tr>
-<tr><th scope="row">5 000</th><td class="num">15,4</td><td class="num ok">166</td><td class="num ok">315</td><td class="num ">99</td><td class="num ">66</td></tr>
-<tr class="need"><th scope="row">Нужно на 100 млн ₽</th><td class="num">—</td><td class="num">3 090 т<br><small>9,5 конт./мес</small></td><td class="num">1 660 т<br><small>5,1 конт./мес</small></td><td class="num">5 030 т<br><small>15,5 конт./мес</small></td><td class="num">7 340 т<br><small>22,7 конт./мес</small></td></tr>
-</tbody></table></div>
-<p class="note">Контейнер — 27 т. Маржа на 1 кг: базовый ₱36,5, щековина по ₱250 — ₱67,8, без квоты — ₱22,4, при пошлине 30% — ₱15,3. Содержание компании 9 млн ₽ в год уже вычтено.</p>
+   <div class="card">
+    <div class="ctl-name">Остаётся своей компании с 1 кг</div>
+    <div class="kg-big"><span class="v" id="mRub">—</span><span class="u" id="mPhp"></span></div>
+    <div class="bar" id="bar" role="img" aria-label="Из чего складывается цена продажи 1 кг"></div>
+    <ul class="legend" id="legend"></ul>
+    <div class="warn" id="warn">Сдвиньте цену продажи выше себестоимости — расчёт объёма появится сразу.</div>
+   </div>
+  </div>
+ </section>
 
-<h2>Что нужно для 100 млн ₽ в год</h2>
-<ul>
-<li><b>Объём ≈ 3 100 т в год</b>, в основном щековина. За полгода 2026 года ушло 295 т щековины. Сколько щековины завод может давать в год — вопрос коммерческой службе.</li>
-<li><b>Цена завода как в 2026 году</b>, а не по октябрьскому прайсу.</li>
-<li><b>Место в квоте MAV</b> (пошлина 15%). Без квоты нужно ≈ 5 000 т в год.</li>
-<li><b>Деньги в обороте ≈ 180 млн ₽</b>: три месяца закупок (дорога + продажа + оплата) и уставный капитал компании $200 000 ≈ 16 млн ₽.</li>
-<li><b>Подтверждённая цена покупателей щековины.</b> Сейчас она взята по обрези 80/20–70/30 (₱210–250). Щековина жирнее, поэтому цена может оказаться ниже. Это главная неизвестная, её запросили у партнёров в Маниле.</li>
-</ul>
+ <section class="sec">
+  <h2>Что это значит за год</h2>
+  <p class="sec-lead">При объёме из верхнего блока, на котором выходит цель.</p>
+  <div class="kpis">
+   <div class="kpi"><div class="l">Выручка своей компании</div><div class="v" id="kRev">—</div><div class="s">продажи в Маниле</div></div>
+   <div class="kpi"><div class="l">Прибыль до налога</div><div class="v" id="kPre">—</div><div class="s">после содержания компании</div></div>
+   <div class="kpi"><div class="l">Чистая прибыль</div><div class="v" id="kNet" style="color:var(--good)">—</div><div class="s">после налога 25% на Филиппинах</div></div>
+   <div class="kpi"><div class="l">Деньги в обороте</div><div class="v" id="kWc">—</div><div class="s">закупки на 3 месяца вперёд</div></div>
+  </div>
+ </section>
 
-<h2>По позициям: сколько остаётся с 1 кг, ₱</h2>
-<p class="lead">Себестоимость на складе в Маниле = цена CFR × (1 + пошлина 15%) + ₱20 расходов в порту + 3% за деньги в обороте. Остаток = оптовая цена в Маниле минус себестоимость, до содержания компании и налога.</p>
-<div class="scroll"><table>
-<thead><tr><th>Позиция</th><th>CFR факт 2026, $/кг</th><th>CFR прайс 16.10, $/кг</th><th>Опт в Маниле, ₱/кг</th><th>Остаток по цене 2026</th><th>Остаток по прайсу 16.10</th><th>Откуда цена продажи</th></tr></thead>
-<tbody>
-<tr><th scope="row">Щековина б/ш</th><td class="num">1,89</td><td class="num">3,10</td><td class="num">210</td><td class="num ok">+47</td><td class="num neg">−45</td><td class="src">₱210–250: опт импортной обрези 80/20–70/30 для переработчиков (Бон, 14.10). Берём нижнюю границу</td></tr>
-<tr><th scope="row">Грудинка б/к</th><td class="num">3,15</td><td class="num">3,84</td><td class="num">252</td><td class="num neg">−6</td><td class="num neg">−58</td><td class="src">грудинка-заморозка ₱300 в рознице (Минсельхоз PH, 20.10.2026) × 0,84</td></tr>
-<tr><th scope="row">Грудинка н/к</th><td class="num">2,95</td><td class="num">3,87</td><td class="num">252</td><td class="num ok">+9</td><td class="num neg">−61</td><td class="src">грудинка-заморозка ₱300 в рознице (Минсельхоз PH, 20.10.2026) × 0,84</td></tr>
-<tr><th scope="row">Лопатка б/к</th><td class="num">—</td><td class="num">3,90</td><td class="num">202</td><td class="num muted">—</td><td class="num neg">−113</td><td class="src">лопатка-заморозка ₱240 в рознице (Минсельхоз PH, 20.10.2026) × 0,84</td></tr>
-<tr><th scope="row">Окорок б/к</th><td class="num">—</td><td class="num">3,97</td><td class="num">202</td><td class="num muted">—</td><td class="num neg">−118</td><td class="src">лопатка-заморозка ₱240 в рознице (Минсельхоз PH, 20.10.2026) × 0,84</td></tr>
-<tr><th scope="row">Рёбра подлопаточные</th><td class="num">—</td><td class="num">2,25</td><td class="num">218</td><td class="num muted">—</td><td class="num ok">+28</td><td class="src">рёбра: опт местной охлаждёнки ₱290–330 (Бон) минус 25% за заморозку</td></tr>
-<tr><th scope="row">Рёбра с грудинки</th><td class="num">—</td><td class="num">3,40</td><td class="num">240</td><td class="num muted">—</td><td class="num neg">−37</td><td class="src">рёбра: опт местной охлаждёнки ₱290–330 (Бон) минус 20–25% за заморозку</td></tr>
-<tr><th scope="row">Рёбра корейки</th><td class="num">—</td><td class="num">3,94</td><td class="num">240</td><td class="num muted">—</td><td class="num neg">−78</td><td class="src">рёбра: опт местной охлаждёнки ₱290–330 (Бон) минус 20–25% за заморозку</td></tr>
-<tr><th scope="row">Шкурка хребтовая</th><td class="num">—</td><td class="num">1,03</td><td class="num">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="src">цены покупателя нет: запрошена у Harvey и Jervis</td></tr>
-<tr><th scope="row">Шкурка корпусная</th><td class="num">—</td><td class="num">1,29</td><td class="num">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="src">цены покупателя нет: запрошена у Harvey и Jervis</td></tr>
-<tr><th scope="row">Рульки</th><td class="num">—</td><td class="num">2,52</td><td class="num">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="src">цены покупателя нет: запрошена у Harvey и Jervis</td></tr>
-</tbody></table></div>
-<p class="note">По прайсу от 16 октября в плюсе только подлопаточные рёбра. Для шкурки и рулек нет цены покупателя, поэтому они не посчитаны, хотя по себестоимости (₱98–118 и ₱211) это кандидаты.</p>
+ <section class="sec">
+  <h2>Чистая прибыль в зависимости от объёма</h2>
+  <p class="sec-lead">Проведите по графику: он покажет прибыль при любом объёме.</p>
+  <div class="card chart-wrap">
+   <svg class="chart" id="chart" viewBox="0 0 720 300" role="img" aria-label="График чистой прибыли от объёма поставок"></svg>
+   <div class="tip" id="tip"></div>
+  </div>
+ </section>
 
-<h2>Риски, которые могут изменить ответ</h2>
-<ul>
-<li>Минсельхоз Филиппин обсуждает паузу на ввоз лопатки, грудинки и окорока на 2 месяца с середины ноября, а также защитные меры против импорта свинины.</li>
-<li>Минсельхоз предлагает поднять пошлины на свинину до 30% в квоте и 40% вне квоты. Расширенная квота 204 210 т действует до 31.12.2026.</li>
-<li>Расходы в Маниле (₱20 с кг) — оценка: портовые сборы за 40-футовый рефконтейнер около $1 070, остальное нужно уточнить у таможенного брокера и холодильника.</li>
-<li>Не учтены налог при выводе дивидендов в Россию, дополнительные сотрудники при 10 контейнерах в месяц, колебания курса.</li>
-</ul>
+ <section class="sec">
+  <h2>Таблица: тонны → деньги</h2>
+  <p class="sec-lead">При текущих настройках. Нажмите на строку, чтобы сделать эту прибыль целью.</p>
+  <div class="card scroll" style="padding:0">
+   <table>
+    <thead><tr><th>Тонн в год</th><th>Чистая прибыль, млн ₽</th><th>Контейнеров в месяц</th><th>Выручка, млн ₽</th><th>Деньги в обороте, млн ₽</th></tr></thead>
+    <tbody id="tbody"></tbody>
+   </table>
+  </div>
+ </section>
 
-<h2>Исходные данные</h2>
-<ul>
-<li>Отгрузки МПК Атяшевский на Филиппины, февраль–июль 2026: 376 т, 14 контейнеров, цены CFR (данные завода).</li>
-<li>Экспортный прайс Талины CFR Манила от 16.10.2026 («с минимальной маржой»).</li>
-<li>Оптовые ориентиры по Маниле от партнёров (14.10.2026): лопатка/окорок ₱270–300, грудинка ₱320–350, рёбра ₱290–330, обрезь 80/20–70/30 ₱210–250.</li>
-<li>Розница импортной заморозки, Минсельхоз Филиппин, 20.10.2026: лопатка ₱240, грудинка ₱300 — <a href="https://context.ph/2026/10/20/da-moves-to-support-local-hog-producers-amid-low-farmgate-prices/">Context.ph</a>.</li>
-<li>Пауза на ввоз: <a href="https://tribune.net.ph/2026/10/22/da-eyes-mid-november-freeze-on-pork-imports">Daily Tribune, 22.10.2026</a>. Повышение пошлин: <a href="https://www.philstar.com/business/2026/11/02/2567165/pork-tariff-hike-seen-stoke-inflation">Philstar, 02.11.2026</a>. Квота MAV 2026: <a href="https://globaltradealert.org/intervention/155764-philippines-minimum-access-volume-for-pork-imports-increased-for-2026-and-2027">Global Trade Alert</a>.</li>
-<li>Содержание компании в Маниле ≈ 9 млн ₽ в первый год и капитал $200 000: <a href="https://daniilglushko.github.io/entity-budget-asia/">сравнение юрлиц</a>.</li>
-<li>Курсы: $1 = 80,6 ₽ (ЦБ, 31.10.2026), $1 = ₱63,7, ₱1 = 1,265 ₽.</li>
-</ul>
+ <section class="sec">
+  <div class="card">
+   <h2 style="font-size:18px">Откуда цифры</h2>
+   <div class="notes">
+    <ul>
+     <li><b>Цены завода</b> — фактические отгрузки МПК Атяшевский на Филиппины в феврале–июле 2026 года: 376 т, 14 контейнеров; щековина в среднем $1,89 за кг, грудинка $2,95–3,15 (CFR Манила). Подлопаточные рёбра — $2,25 по экспортному прайсу Талины.</li>
+     <li><b>Цены продажи в Маниле:</b> опт импортной обрези для переработчиков ₱210–250 (партнёры в Маниле, октябрь 2026); импортная замороженная грудинка ₱300 в рознице (Минсельхоз Филиппин, 20.10.2026, <a href="https://context.ph/2026/10/20/da-moves-to-support-local-hog-producers-amid-low-farmgate-prices/">Context.ph</a>), опт ≈ 84% от розницы; рёбра — опт ₱290–330 за охлаждённые с поправкой на заморозку.</li>
+     <li><b>Пошлина:</b> 15% в квоте MAV (квота 2026 года — 204 210 т), 25% вне квоты.</li>
+     <li><b>Порт, брокер и склад</b> — ₱20 с кг; портовые сборы за 40-футовый рефконтейнер около $1 070.</li>
+     <li><b>Деньги в обороте</b> — 3 месяца под 12% годовых. <b>Содержание компании в Маниле</b> — 9 млн ₽ в год (<a href="https://daniilglushko.github.io/entity-budget-asia/">сравнение юрлиц</a>), уставный капитал $200 000 сверху. Налог на прибыль на Филиппинах 25%.</li>
+     <li><b>Курсы:</b> $1 = 80,6 ₽ (ЦБ, 31.10.2026), $1 = ₱63,7.</li>
+    </ul>
+   </div>
+  </div>
+ </section>
 
-<footer>Расчёт воспроизводится скриптом calc.py в этом репозитории: все допущения — в начале файла. Подготовил Д. Глушко.</footer>
+ <footer>Расчёт на 5 ноября 2026 года. Настройки сохраняются в ссылке: можно переслать именно этот вариант.</footer>
 </main>
+
+<script>
+(() => {
+  const RUB_USD = 80.6, PHP_USD = 63.7, RUB_PHP = RUB_USD / PHP_USD;
+  const FIXED = 9e6, TAX = 0.25, RATE = 0.12, CYCLE_M = 3, CONT_T = 27;
+
+  // Ассортимент 2026: щековина 295,4 т по $1,89; грудинка б/к 54 т по $3,15; н/к 27 т по $2,95
+  const PRESETS = [
+    { id: "mix", name: "Как в 2026", sub: "78% щековина, 22% грудинка", cfr: 2.15, sell: 219 },
+    { id: "jowl", name: "Щековина", sub: "на сисиг", cfr: 1.89, sell: 210 },
+    { id: "ribs", name: "Подлопаточные рёбра", sub: "барбекю, синиганг", cfr: 2.25, sell: 218 },
+  ];
+
+  const S = { goal: 100, cfr: 2.15, sell: 219, duty: 0.15, cost: 20, preset: "mix" };
+
+  // Настройки из ссылки
+  try {
+    const h = new URLSearchParams(location.hash.slice(1));
+    for (const k of ["goal", "cfr", "sell", "duty", "cost"]) if (h.has(k) && !isNaN(+h.get(k))) S[k] = +h.get(k);
+    if (h.has("p")) S.preset = h.get("p");
+  } catch (e) {}
+
+  const $ = id => document.getElementById(id);
+  const fmt = (x, d = 0) => x.toLocaleString("ru-RU", { minimumFractionDigits: d, maximumFractionDigits: d }).replace("-", "−");
+  const mln = x => {
+    const a = Math.abs(x);
+    if (a >= 1e9) return fmt(x / 1e9, a >= 1e10 ? 0 : 1) + " млрд ₽";
+    return fmt(x / 1e6, a < 1e7 ? 1 : 0) + " млн ₽";
+  };
+  const roundT = t => Math.ceil(t / 10) * 10;
+
+  function unit() {
+    const cfrP = S.cfr * PHP_USD;
+    const duty = cfrP * S.duty;
+    const fin = (cfrP + duty + S.cost) * RATE * CYCLE_M / 12;
+    const landed = cfrP + duty + S.cost + fin;
+    const m = S.sell - landed;
+    return { cfrP, duty, fin, landed, m, mRub: m * RUB_PHP };
+  }
+  function year(t, u) {
+    const kg = t * 1000;
+    const rev = kg * S.sell * RUB_PHP;
+    const pre = kg * u.mRub - FIXED;
+    const net = pre > 0 ? pre * (1 - TAX) : pre;
+    const wc = kg * CYCLE_M / 12 * u.landed * RUB_PHP;
+    const plant = kg * S.cfr * RUB_USD;
+    return { rev, pre, net, wc, plant };
+  }
+  const needTonnes = (goalRub, u) => u.mRub > 0 ? (goalRub / (1 - TAX) + FIXED) / u.mRub / 1000 : Infinity;
+
+  const pw = $("presets");
+  PRESETS.forEach(p => {
+    const b = document.createElement("button");
+    b.className = "preset"; b.dataset.id = p.id;
+    b.innerHTML = `${p.name}<small>${p.sub}</small>`;
+    b.onclick = () => { S.cfr = p.cfr; S.sell = p.sell; S.preset = p.id; sync(); };
+    pw.appendChild(b);
+  });
+
+  const fill = el => el.style.setProperty("--p", ((el.value - el.min) / (el.max - el.min) * 100) + "%");
+  const bindRange = (id, key) => {
+    const el = $(id);
+    el.addEventListener("input", () => { S[key] = +el.value; if (key === "cfr" || key === "sell") S.preset = ""; render(); });
+  };
+  bindRange("goal", "goal"); bindRange("cfr", "cfr"); bindRange("sell", "sell"); bindRange("cost", "cost");
+  document.querySelectorAll("#duty button").forEach(b => b.onclick = () => { S.duty = +b.dataset.v; render(); });
+  document.querySelectorAll("#goalChips .chip").forEach(b => b.onclick = () => { S.goal = +b.dataset.v; sync(); });
+
+  function sync() {
+    $("goal").value = S.goal; $("cfr").value = S.cfr; $("sell").value = S.sell; $("cost").value = S.cost;
+    render();
+  }
+
+  function render() {
+    ["goal", "cfr", "sell", "cost"].forEach(id => fill($(id)));
+    const u = unit();
+    const T = needTonnes(S.goal * 1e6, u);
+    const ok = isFinite(T);
+
+    $("goalOut").textContent = fmt(S.goal);
+    document.querySelectorAll("#goalChips .chip").forEach(b => b.setAttribute("aria-pressed", +b.dataset.v === S.goal));
+    document.querySelectorAll(".preset").forEach(b => b.setAttribute("aria-pressed", b.dataset.id === S.preset));
+    document.querySelectorAll("#duty button").forEach(b => b.setAttribute("aria-pressed", Math.abs(+b.dataset.v - S.duty) < 1e-9));
+
+    $("cfrOut").textContent = `$${fmt(S.cfr, 2)} = ₱${fmt(u.cfrP)}`;
+    $("sellOut").textContent = `₱${fmt(S.sell)} = ${fmt(S.sell * RUB_PHP)} ₽`;
+    $("dutyOut").textContent = `${fmt(S.duty * 100)}% = ₱${fmt(u.duty)}`;
+    $("costOut").textContent = `₱${fmt(S.cost)} с кг`;
+
+    // Килограмм
+    const mEl = $("mRub");
+    const mShow = Math.max(u.m, 0);
+    mEl.textContent = (mShow > 0 ? "+" : "") + fmt(mShow * RUB_PHP, 1) + " ₽";
+    mEl.className = "v good";
+    $("mPhp").textContent = `₱${fmt(mShow, 1)} из ₱${fmt(S.sell)}`;
+    const parts = [
+      { n: "Заводу (CFR)", v: u.cfrP, c: "var(--s1)" },
+      { n: "Пошлина", v: u.duty, c: "var(--s2)" },
+      { n: "Порт, брокер, склад", v: S.cost, c: "var(--s3)" },
+      { n: "Деньги в обороте", v: u.fin, c: "var(--s4)" },
+      { n: "Своей компании", v: Math.max(u.m, 0), c: "var(--s5)" },
+    ];
+    const base = Math.max(S.sell, u.landed);
+    $("bar").innerHTML = parts.map(p => `<div style="width:${Math.max(p.v, 0) / base * 100}%;background:${p.c}" title="${p.n}"></div>`).join("");
+    $("legend").innerHTML = parts.map(p =>
+      `<li><span class="sw" style="background:${p.c}"></span><span class="nm">${p.n}</span><span class="vv">₱${fmt(p.v, 1)}<small>${fmt(p.v * RUB_PHP, 1)} ₽</small></span></li>`
+    ).join("");
+    $("warn").style.display = u.m > 0 ? "none" : "block";
+
+    // Цель → объём
+    if (ok) {
+      const y = year(T, u);
+      $("needT").textContent = fmt(roundT(T));
+      const cm = T / CONT_T / 12;
+      $("needC").textContent = fmt(cm, cm < 10 ? 1 : 0);
+      $("plantRev").textContent = mln(y.plant) + " в год";
+      const full = Math.floor(cm), frac = cm - full, shown = Math.min(full, 60);
+      let html = "";
+      for (let i = 0; i < shown; i++) html += '<span class="ctr"></span>';
+      if (full <= 60 && frac > 0.05) html += '<span class="ctr part"></span>';
+      if (full > 60) html += `<span class="ctr-more">+${fmt(full - 60)}</span>`;
+      $("ctrs").innerHTML = html;
+      $("kRev").textContent = mln(y.rev); $("kPre").textContent = mln(y.pre);
+      $("kNet").textContent = mln(y.net); $("kWc").textContent = mln(y.wc);
+    } else {
+      ["needT", "needC", "plantRev", "kRev", "kPre", "kNet", "kWc"].forEach(id => $(id).textContent = "—");
+      $("ctrs").innerHTML = "";
+    }
+
+    drawChart(u, ok ? T : null);
+    drawTable(u, ok ? T : null);
+
+    try { history.replaceState(null, "", "#" + new URLSearchParams({ goal: S.goal, cfr: S.cfr, sell: S.sell, duty: S.duty, cost: S.cost, p: S.preset })); } catch (e) {}
+  }
+
+  // График
+  const W = 720, H = 300, L = 64, R = 16, TP = 20, B = 40;
+  function niceMax(x) {
+    const p = Math.pow(10, Math.floor(Math.log10(x)));
+    for (const k of [1, 2, 2.5, 5, 10]) if (k * p >= x) return k * p;
+    return 10 * p;
+  }
+  function drawChart(u, T) {
+    const svg = $("chart");
+    const maxT = niceMax(Math.max(T ? T * 1.6 : 2000, 1000));
+    const pts = [];
+    for (let i = 0; i <= 80; i++) { const t = maxT * i / 80; pts.push([t, Math.max(year(t, u).net, 0)]); }
+    const goal = S.goal * 1e6;
+    const vals = pts.map(p => p[1]).concat([goal]);
+    const yMax = niceMax(Math.max(...vals, 1) * 1.05), yMin = 0;
+    const x = t => L + (W - L - R) * t / maxT;
+    const y = v => TP + (H - TP - B) * (1 - (v - yMin) / (yMax - yMin));
+    let s = "";
+    for (let i = 0; i <= 4; i++) {
+      const v = yMin + (yMax - yMin) * i / 4;
+      s += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/>`;
+      s += `<text x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${fmt(v / 1e6)}</text>`;
+    }
+    for (let i = 0; i <= 4; i++) {
+      const t = maxT * i / 4;
+      s += `<text x="${x(t)}" y="${H - B + 20}" text-anchor="${i === 0 ? "start" : i === 4 ? "end" : "middle"}">${fmt(t)} т</text>`;
+    }
+    s += `<text x="${L - 8}" y="${TP - 8}" text-anchor="end">млн ₽</text>`;
+    const t26 = 750;
+    if (t26 < maxT) {
+      s += `<line x1="${x(t26)}" x2="${x(t26)}" y1="${TP}" y2="${H - B}" stroke="var(--muted)" stroke-dasharray="2 4"/>`;
+      s += `<text x="${x(t26) + 4}" y="${H - B - 8}">темп 2026</text>`;
+    }
+    s += `<line x1="${L}" x2="${W - R}" y1="${y(goal)}" y2="${y(goal)}" stroke="var(--accent)" stroke-dasharray="6 4" stroke-width="1.5"/>`;
+    s += `<text x="${L + 6}" y="${y(goal) - 6}" style="fill:var(--accent);font-weight:600">цель ${fmt(S.goal)} млн ₽</text>`;
+    const area = `M${x(0)},${y(0)} ` + pts.map(p => `L${x(p[0])},${y(Math.max(p[1], 0))}`).join(" ") + ` L${x(maxT)},${y(0)} Z`;
+    s += `<path d="${area}" fill="var(--good)" opacity=".12"/>`;
+    s += `<path d="${pts.map((p, i) => (i ? "L" : "M") + x(p[0]) + "," + y(p[1])).join(" ")}" fill="none" stroke="var(--good)" stroke-width="2.5"/>`;
+    if (T && T <= maxT) {
+      const right = x(T) > W - 140;
+      s += `<line x1="${x(T)}" x2="${x(T)}" y1="${y(goal)}" y2="${H - B}" stroke="var(--accent)" stroke-width="1.5"/>`;
+      s += `<circle cx="${x(T)}" cy="${y(goal)}" r="6" fill="var(--accent)" stroke="var(--card)" stroke-width="2"/>`;
+      s += `<text x="${x(T)}" y="${y(goal) + 20}" text-anchor="${right ? "end" : "start"}" dx="${right ? -8 : 8}" style="fill:var(--accent);font-weight:700">${fmt(roundT(T))} т в год</text>`;
+    }
+    s += `<line id="hl" x1="0" x2="0" y1="${TP}" y2="${H - B}" stroke="var(--ink)" opacity="0"/><circle id="hc" r="5" fill="var(--ink)" opacity="0"/>`;
+    s += `<rect x="${L}" y="${TP}" width="${W - L - R}" height="${H - TP - B}" fill="transparent" id="hit"/>`;
+    svg.innerHTML = s;
+    const hit = svg.querySelector("#hit"), tip = $("tip"), hl = svg.querySelector("#hl"), hc = svg.querySelector("#hc");
+    const move = ev => {
+      const r = svg.getBoundingClientRect();
+      const px = (ev.clientX - r.left) / r.width * W;
+      const t = Math.max(0, Math.min(maxT, (px - L) / (W - L - R) * maxT));
+      const v = Math.max(year(t, u).net, 0);
+      hl.setAttribute("x1", x(t)); hl.setAttribute("x2", x(t)); hl.setAttribute("opacity", ".3");
+      hc.setAttribute("cx", x(t)); hc.setAttribute("cy", y(v)); hc.setAttribute("opacity", "1");
+      tip.style.display = "block";
+      tip.style.left = Math.min(Math.max(x(t) / W * r.width, 90), r.width - 90) + "px";
+      tip.style.top = (y(v) / H * r.height) + "px";
+      tip.textContent = `${fmt(Math.round(t / 10) * 10)} т → ${mln(v)}`;
+    };
+    hit.addEventListener("pointermove", move);
+    hit.addEventListener("pointerdown", move);
+    hit.addEventListener("pointerleave", () => { tip.style.display = "none"; hl.setAttribute("opacity", "0"); hc.setAttribute("opacity", "0"); });
+  }
+
+  // Таблица
+  function drawTable(u, T) {
+    const rows = [750, 1500, 3000, 5000, 10000, 20000];
+    if (T) rows.push(roundT(T));
+    const uniq = [...new Set(rows)].sort((a, b) => a - b).filter(t => year(t, u).net > 0);
+    $("tbody").innerHTML = uniq.map(t => {
+      const yv = year(t, u), sel = T && t === roundT(T);
+      const label = t === 750 ? " <small style='color:var(--muted)'>темп 2026</small>" : sel ? " <small style='color:var(--accent)'>цель</small>" : "";
+      return `<tr class="${sel ? "sel" : ""}" data-net="${yv.net}"><td>${fmt(t)}${label}</td><td class="${yv.net >= S.goal * 1e6 - 1 ? "hit" : ""}">${fmt(yv.net / 1e6)}</td><td>${fmt(t / CONT_T / 12, 1)}</td><td>${fmt(yv.rev / 1e6)}</td><td>${fmt(yv.wc / 1e6)}</td></tr>`;
+    }).join("");
+    $("tbody").querySelectorAll("tr").forEach(tr => tr.onclick = () => {
+      const v = Math.round(+tr.dataset.net / 1e7) * 10;
+      if (v >= 10) { S.goal = Math.min(1000, v); sync(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+    });
+  }
+
+  sync();
+})();
+</script>
 </body>
 </html>
