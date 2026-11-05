@@ -143,6 +143,58 @@ svg.chart { width: 100%; height: auto; display: block; touch-action: none; }
 .cmp-ctl { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; margin-top: 8px; }
 @media (max-width: 640px) { .cmp-ctl { grid-template-columns: 1fr; } }
 
+/* Hero gain */
+.gain { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 16px; background: rgba(255,255,255,.1); border-radius: 16px; overflow: hidden; cursor: pointer; }
+.gain > div { background: color-mix(in srgb, var(--good) 22%, var(--hero)); padding: 16px 20px; }
+.gain:hover > div { background: color-mix(in srgb, var(--good) 30%, var(--hero)); }
+@media (max-width: 760px) { .gain { grid-template-columns: 1fr; } }
+.gain-l { font-size: 13px; color: var(--hero-muted); }
+.gain-v { font-size: clamp(26px, 4vw, 34px); font-weight: 800; color: #6ee0a0; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.gain-s { font-size: 12px; color: var(--hero-muted); }
+
+/* Paired bars */
+.pb { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.pb-t { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; font-weight: 600; margin-bottom: 4px; }
+.pb-row { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 10px; align-items: center; padding: 6px; margin: 0 -6px; border-radius: 8px; }
+.pb-row.click { cursor: pointer; }
+.pb-row.click:hover, .pb-row.click:focus-visible { background: var(--accent-soft); outline: none; }
+.pb-l { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.2; }
+.pb-l small { display: block; font-weight: 400; color: var(--muted); font-size: 11px; }
+.pb-bars { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.pb-bar { height: 22px; border-radius: 5px; display: flex; align-items: center; padding: 0 8px; font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap; min-width: max-content; max-width: 100%; transition: width .25s; }
+.pb-leg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--muted); }
+.pb-leg i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.share { display: flex; height: 30px; border-radius: 8px; overflow: hidden; font-size: 12px; font-weight: 700; color: #fff; margin: 2px 0 6px; }
+.share div { display: flex; align-items: center; padding: 0 8px; white-space: nowrap; overflow: hidden; }
+.cta { align-self: flex-start; border: 1px solid var(--accent); background: var(--accent-soft); color: var(--ink); border-radius: 10px; padding: 10px 14px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+.cta:hover { background: var(--accent); color: #fff; }
+
+/* Why now */
+.facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 760px) { .facts { grid-template-columns: 1fr; } }
+.fact { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.fact .src, .fact p { overflow-wrap: anywhere; }
+.grid2 > *, .facts > *, .goal > *, .kpis > * { min-width: 0; }
+.fact.wide { grid-column: 1 / -1; }
+.fact-n { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 800; font-size: 13px; flex: none; }
+.fact-h { display: flex; gap: 10px; align-items: center; font-weight: 700; color: var(--ink); font-size: 17px; line-height: 1.25; }
+.fact-big { font-size: 30px; font-weight: 800; color: var(--accent); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.fact-big small { font-size: 14px; font-weight: 600; color: var(--muted); }
+.fact p { margin: 0; font-size: 14px; }
+.fact .src { font-size: 12px; color: var(--muted); margin-top: auto; }
+.fact .src a { color: var(--muted); }
+.mini { width: 100%; border-collapse: collapse; font-size: 14px; }
+.mini th, .mini td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.mini th:first-child, .mini td:first-child { text-align: left; }
+.mini thead th { font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); font-weight: 600; white-space: normal; }
+.mini td.up { color: var(--accent); font-weight: 700; }
+.mini td.gd { color: var(--good); font-weight: 700; }
+.vs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.vs div { background: var(--bg); border-radius: 10px; padding: 10px 12px; }
+.vs .l { font-size: 12px; color: var(--muted); }
+.vs .v { font-size: 22px; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; }
+.vs .v.gd { color: var(--good); }
+
 /* Table */
 .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 table { border-collapse: collapse; width: 100%; font-size: 14px; }
@@ -189,13 +241,18 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     <div class="goal-sub" style="margin-top:12px"><span>Завод получит за мясо</span> <b id="plantRev">—</b></div>
    </div>
   </div>
+  <div class="gain" role="button" tabindex="0" data-go="cmp">
+   <div><div class="gain-l">Выгода группы против продажи в России</div><div class="gain-v" id="heroGain">—</div><div class="gain-s">в год: завод + чистая прибыль своей компании</div></div>
+   <div><div class="gain-l">Против продажи через третьи компании</div><div class="gain-v" id="heroVsTr">—</div><div class="gain-s">в год остаётся в группе, а не у посредников</div></div>
+   <div><div class="gain-l">Каждый килограмм напрямую</div><div class="gain-v" id="heroPct">—</div><div class="gain-s">к цене в России</div></div>
+  </div>
  </div>
 </section>
 
 <main class="wrap">
 
- <section class="sec">
-  <h2>Россия, трейдеры или напрямую: сколько группа получает с 1 кг</h2>
+ <section class="sec" id="cmp">
+  <h2>Россия, третьи компании или напрямую: сколько группа получает с 1 кг</h2>
   <p class="sec-lead" id="cmpLead">Один и тот же килограмм тремя способами. Продукт и цены — из блока «Экономика одного килограмма» ниже.</p>
   <div class="card">
    <div class="cmp-row">
@@ -204,7 +261,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     <div class="cmp-val" id="valRu">—</div>
    </div>
    <div class="cmp-row">
-    <div class="cmp-name">Экспорт через трейдеров<small>как в 2026: цена CFR минус фрахт</small></div>
+    <div class="cmp-name">Через третьи компании<small>как в 2026: маржу в Маниле забирают посредники</small></div>
     <div class="cmp-bar" id="barTr"></div>
     <div class="cmp-val" id="valTr">—</div>
    </div>
@@ -227,9 +284,86 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
    </div>
   </div>
   <div class="cmp-year">
-   <div class="kpi"><div class="l" id="yLbl1">Сверх продажи в России, за год</div><div class="v" id="yTr">—</div><div class="s">экспорт через трейдеров</div></div>
+   <div class="kpi"><div class="l" id="yLbl1">Сверх продажи в России, за год</div><div class="v" id="yTr">—</div><div class="s">через третьи компании</div></div>
    <div class="kpi hl"><div class="l" id="yLbl2">Сверх продажи в России, за год</div><div class="v" id="yDi">—</div><div class="s">напрямую: завод + чистая прибыль своей компании</div></div>
    <div class="kpi"><div class="l">Сейчас уходит посредникам, за год</div><div class="v" id="yMid">—</div><div class="s">маржа трейдера и импортёра, которую забирает своя компания</div></div>
+  </div>
+ </section>
+
+ <section class="sec" id="why">
+  <h2>Почему сейчас и почему напрямую</h2>
+  <p class="sec-lead">Пять фактов 2026 года. Строки с иконкой ↗ можно нажать: калькулятор пересчитается.</p>
+  <div class="facts">
+
+   <div class="fact">
+    <div class="fact-h"><span class="fact-n">1</span>Рынок в России перенасыщен</div>
+    <div class="fact-big">−15…27% <small>опт свинины к 2025 году</small></div>
+    <div class="pb" aria-label="Снижение оптовых цен к прошлому году">
+     <div class="pb-row"><span class="pb-l">Товарная свинина<small>янв–фев</small></span><div class="pb-bars"><div class="pb-bar" style="width:100%;background:var(--s2)">−27%</div></div></div>
+     <div class="pb-row"><span class="pb-l">Грудинка<small>апрель</small></span><div class="pb-bars"><div class="pb-bar" style="width:81%;background:var(--s2)">−22%</div></div></div>
+     <div class="pb-row"><span class="pb-l">Окорок<small>апрель</small></span><div class="pb-bars"><div class="pb-bar" style="width:67%;background:var(--s2)">−18%</div></div></div>
+     <div class="pb-row"><span class="pb-l">Лопатка<small>апрель</small></span><div class="pb-bars"><div class="pb-bar" style="width:63%;background:var(--s2)">−17%</div></div></div>
+    </div>
+    <p>Свинины в стране больше, чем съедают. В сентябре полутуша поднялась до ~221 ₽, а с октября опять дешевеет: на 42-й неделе −1,9% за неделю. Излишку нужен рынок сбыта, и Филиппины — один из самых быстрорастущих.</p>
+    <div class="src">Источники: <a href="https://ecln.ru/news/novosti-rynka/svinina-podeshevela-optovye-tseny-upali-na-27-/">NTech, янв–фев 2026</a> · <a href="https://iz.ru/2088982/denis-kuznetcov/optovye-ceny-na-svininu-obvalilis-iz-za-perenasyshcheniya-rynka">Известия, апрель 2026</a> · <a href="https://svoefermerstvo.ru/svoemedia/articles/potreblenie-myasa-v-rossii-rekordy-struktura-i-regionalnaya-karta">АгроИнсайт, сентябрь 2026</a> · <a href="https://meatinfo.ru/blog/egenedelniy-obzor-rinka-myasa-rf-ot-meatinforu-42nedelya-2026-goda-1396">Meatinfo, 19.10.2026</a></div>
+   </div>
+
+   <div class="fact">
+    <div class="fact-h"><span class="fact-n">2</span>Внутренний прайс Талины выше рынка</div>
+    <div class="seg" id="mktAdj" style="margin-top:0">
+     <button data-v="1" aria-pressed="true">Рынок, июль<small>как в источнике</small></button>
+     <button data-v="1.2">Рынок + 20%<small>с осенним ростом</small></button>
+    </div>
+    <div class="pb" id="pbPrice"></div>
+    <div class="pb-leg"><span><i style="background:var(--s4)"></i>опт по России</span><span><i style="background:var(--accent)"></i>прайс Талины, октябрь</span></div>
+    <p>Даже с осенним ростом рынка прайс Талины выше. Экспортный прайс от 16 октября ($3,10–3,97) идёт от этих внутренних цен. Для Филиппин цену нужно считать от рынка: $2,0–2,4 за кг CFR.</p>
+    <div class="src">Источники: <a href="https://www.kommersant.ru/doc/8798459">Коммерсант, начало июля 2026</a> · <a href="https://svoefermerstvo.ru/svoemedia/articles/potreblenie-myasa-v-rossii-rekordy-struktura-i-regionalnaya-karta">полутуша +20% к сентябрю</a> · внутренний прайс Талины (с НДС), октябрь 2026</div>
+   </div>
+
+   <div class="fact wide">
+    <div class="fact-h"><span class="fact-n">3</span>Через третьи компании продавать невыгодно, а конкуренты уже наращивают объёмы</div>
+    <div class="fact-big"><span id="fMidY">—</span> <small>в год сейчас уходит посредникам — <span id="fMidKg">—</span> с каждого кг</small></div>
+    <div class="grid2" style="gap:24px">
+     <div class="pb">
+      <div class="pb-t">Цена экспорта на Филиппины, $ за кг</div>
+      <div class="pb-row"><span class="pb-l">Россия в среднем<small>1-е полугодие 2026</small></span><div class="pb-bars"><div class="pb-bar" style="width:100%;background:var(--s1)">$2,40</div></div></div>
+      <div class="pb-row"><span class="pb-l">Талина<small>через посредников</small></span><div class="pb-bars"><div class="pb-bar" style="width:90%;background:var(--accent)">$2,15</div></div></div>
+     </div>
+     <div class="pb">
+      <div class="pb-t">Поставки на Филиппины в 2026 году, тонн</div>
+      <div class="pb-row"><span class="pb-l">Мираторг, план<small>заявлен на ПМЭФ</small></span><div class="pb-bars"><div class="pb-bar" style="width:100%;background:var(--s1)">11 000+</div></div></div>
+      <div class="pb-row"><span class="pb-l">Мираторг, факт<small>к июню</small></span><div class="pb-bars"><div class="pb-bar" style="width:36%;background:var(--s1)">4 000+</div></div></div>
+      <div class="pb-row"><span class="pb-l">Талина, факт<small>февраль–июль</small></span><div class="pb-bars"><div class="pb-bar" style="width:3.4%;background:var(--accent)">376</div></div></div>
+     </div>
+    </div>
+    <p>Через посредников Талина продавала примерно на 10% дешевле, чем в среднем по России, а маржу в Маниле оставляли себе посредники. Мираторг зашёл на Филиппины в марте 2026 года и к концу года собирается поставить в 30 раз больше, чем Талина за полгода.</p>
+    <button class="cta" data-go="cmp">Посмотреть, сколько получает группа напрямую ↗</button>
+    <div class="src">Источники: <a href="https://www.tks.ru/news/nearby/2026/08/05/0014/rossiya-vpervyie-postavila-na-filippinyi-bolee-14-tyisyach-tonn-myasa/">ТКС: 14 тыс. т на $34 млн, 1П 2026</a> · <a href="https://investfuture.ru/articles/miratorg-naraschivaet-eksport-svininy-na-filippiny-do-11-0-tys-tonn-36868284">Мираторг на ПМЭФ-2026</a> · <a href="https://miratorg.ru/press/news/miratorg-_pervym_iz_rossiyskikh_proizvoditeley_eks/">пресс-релиз Мираторга</a> · отгрузки МПК Атяшевский 2026</div>
+   </div>
+
+   <div class="fact">
+    <div class="fact-h"><span class="fact-n">4</span>Главный конкурент дорожает</div>
+    <div class="fact-big">+17% <small>свиная туша в Бразилии с начала октября</small></div>
+    <div class="pb">
+     <div class="pb-t">Доля в импорте свинины Филиппин, 1-е полугодие 2026</div>
+     <div class="share"><div style="width:52.2%;background:var(--s1)">Бразилия 52%</div><div style="width:2.9%;background:var(--accent)" title="Россия 2,9%"></div><div style="flex:1;background:var(--s4)">остальные</div></div>
+     <div class="pb-leg"><span><i style="background:var(--accent)"></i>Россия 2,9% — есть куда расти</span></div>
+    </div>
+    <p>В октябре туша в Бразилии подорожала до $1,98 за кг: производители сдерживают предложение. Чем дороже Бразилия, тем легче нам заходить по нашей цене.</p>
+    <div class="src">Источники: <a href="https://meatinfo.ru/blog/egenedelniy-obzor-rinka-myasa-rf-ot-meatinforu-42nedelya-2026-goda-1396">Meatinfo / CEPEA, 19.10.2026</a> · <a href="https://business.inquirer.net/605141/brazil-pork-shipments-to-ph-to-stay-strong">Inquirer: доля Бразилии</a> · доля России: 13 из 455 тыс. т</div>
+   </div>
+
+   <div class="fact">
+    <div class="fact-h"><span class="fact-n">5</span>Дешёвое в России дорого на Филиппинах</div>
+    <div class="pb">
+     <div class="pb-row click" data-preset="jowl" role="button" tabindex="0"><span class="pb-l">Щековина ↗<small>сырьё для сисига</small></span><div class="pb-bars"><div class="pb-bar" style="width:40%;background:var(--s4)">126 ₽</div><div class="pb-bar" style="width:84%;background:var(--good)">266–316 ₽ · ×2,1–2,5</div></div></div>
+     <div class="pb-row click" data-preset="ribs" role="button" tabindex="0"><span class="pb-l">Подлопаточные рёбра ↗<small>барбекю, синиганг</small></span><div class="pb-bars"><div class="pb-bar" style="width:52%;background:var(--s4)">165 ₽</div><div class="pb-bar" style="width:87%;background:var(--good)">276 ₽ · ×1,7</div></div></div>
+    </div>
+    <div class="pb-leg"><span><i style="background:var(--s4)"></i>в России</span><span><i style="background:var(--good)"></i>опт в Маниле</span></div>
+    <p>Щековина в России почти субпродукт, а на Филиппинах — сырьё для сисига, одного из главных блюд. Шкурка идёт на чичарон: местные производители годами закупают её в Европе и Канаде. Нажмите на строку — калькулятор посчитает выгоду по этому отрубу.</p>
+    <div class="src">Россия: данные Талины (щековина — средняя за февраль–июль 2026, рёбра — октябрь 2026). Манила: опт по данным партнёров, октябрь 2026, ₱1 = 1,265 ₽.</div>
+   </div>
+
   </div>
  </section>
 
@@ -423,9 +557,14 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
       $("yTr").textContent = tr > ru ? "+" + mln(kg * (tr - ru)) : mln(0);
       $("yDi").textContent = "+" + mln(Math.max(kg * (tr - ru), 0) + Math.max(y.net, 0));
       $("yMid").textContent = mln(kg * own);
+      $("fMidY").textContent = mln(kg * own);
+      $("heroGain").textContent = "+" + mln(Math.max(kg * (tr - ru), 0) + Math.max(y.net, 0));
+      $("heroVsTr").textContent = "+" + mln(Math.max(y.net, 0));
     } else {
-      ["yTr", "yDi", "yMid"].forEach(id => $(id).textContent = "—");
+      ["yTr", "yDi", "yMid", "fMidY", "heroGain", "heroVsTr"].forEach(id => $(id).textContent = "—");
     }
+    $("heroPct").textContent = di > ru ? `+${fmt((di / ru - 1) * 100)}%` : "—";
+    $("fMidKg").textContent = `${fmt(own)} ₽`;
   }
 
   function render() {
@@ -572,6 +711,36 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
       if (v >= 10) { S.goal = Math.min(1000, v); sync(); window.scrollTo({ top: 0, behavior: "smooth" }); }
     });
   }
+
+  // Факт 2: рынок против прайса Талины
+  const CUTS_RU = [["Лопатка", 228, 320], ["Окорок", 248, 327], ["Грудинка", 190, 308]];
+  function drawPrice(k) {
+    const max = 330;
+    $("pbPrice").innerHTML = CUTS_RU.map(([n, m, t]) => {
+      const mk = Math.round(m * k);
+      return `<div class="pb-row"><span class="pb-l">${n}<small>Талина выше на ${fmt((t / mk - 1) * 100)}%</small></span><div class="pb-bars">` +
+        `<div class="pb-bar" style="width:${mk / max * 100}%;background:var(--s4)">${fmt(mk)} ₽</div>` +
+        `<div class="pb-bar" style="width:${t / max * 100}%;background:var(--accent)">${n === "Грудинка" ? "305–310" : fmt(t)} ₽</div></div></div>`;
+    }).join("");
+    document.querySelectorAll("#mktAdj button").forEach(b => b.setAttribute("aria-pressed", +b.dataset.v === k));
+  }
+  document.querySelectorAll("#mktAdj button").forEach(b => b.onclick = () => drawPrice(+b.dataset.v));
+  drawPrice(1);
+
+  // Переходы и выбор отруба из фактов
+  const go = id => document.getElementById(id).scrollIntoView({ behavior: "smooth", block: "start" });
+  document.querySelectorAll("[data-go]").forEach(el => {
+    el.addEventListener("click", () => go(el.dataset.go));
+    el.addEventListener("keydown", e => { if (e.key === "Enter") go(el.dataset.go); });
+  });
+  document.querySelectorAll(".pb-row.click").forEach(el => {
+    const pick = () => {
+      const p = PRESETS.find(x => x.id === el.dataset.preset);
+      S.cfr = p.cfr; S.sell = p.sell; S.dom = p.dom; S.preset = p.id; sync(); go("cmp");
+    };
+    el.addEventListener("click", pick);
+    el.addEventListener("keydown", e => { if (e.key === "Enter") pick(); });
+  });
 
   sync();
 })();
