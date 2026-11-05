@@ -222,7 +222,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   <h1>Сколько нужно поставить на Филиппины, чтобы заработать столько, сколько хотим</h1>
   <div class="goal">
    <div class="goal-box">
-    <p class="lbl">Хотим заработать за год, чистыми</p>
+    <p class="lbl">Хотим оставить себе за год, чистыми — после налога и партнёров</p>
     <div class="goal-val"><span id="goalOut">100</span> <small id="goalUnit">млн ₽</small></div>
     <input type="range" id="goal" min="10" max="1000" step="10" value="100" aria-label="Цель по чистой прибыли, млн рублей">
     <div class="chips" id="goalChips">
@@ -287,6 +287,40 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
    <div class="kpi"><div class="l" id="yLbl1">Сверх продажи в России, за год</div><div class="v" id="yTr">—</div><div class="s">через третьи компании</div></div>
    <div class="kpi hl"><div class="l" id="yLbl2">Сверх продажи в России, за год</div><div class="v" id="yDi">—</div><div class="s">напрямую: завод + чистая прибыль своей компании</div></div>
    <div class="kpi"><div class="l">Сейчас уходит посредникам, за год</div><div class="v" id="yMid">—</div><div class="s">маржа трейдера и импортёра, которую забирает своя компания</div></div>
+  </div>
+ </section>
+
+ <section class="sec" id="partners">
+  <h2>Партнёры в Маниле: сколько возьмут и что останется нам</h2>
+  <p class="sec-lead">Партнёры помогают, потому что тоже хотят заработать. Их доля — предположение: условия ещё не обсуждались. Выберите вариант или двигайте ползунки — объём для цели вверху пересчитается.</p>
+  <div class="grid2">
+   <div class="card">
+    <div class="presets" id="ptPresets">
+     <button class="preset" data-bon="15" data-pr="0.5">Скромно<small>15% прибыли + 0,5% выручки</small></button>
+     <button class="preset" data-bon="25" data-pr="1">Обычно<small>25% прибыли + 1% выручки</small></button>
+     <button class="preset" data-bon="40" data-pr="2">Щедро<small>40% прибыли + 2% выручки</small></button>
+    </div>
+    <div class="ctl">
+     <div class="ctl-head"><span class="ctl-name">Команда в Маниле</span><span class="ctl-val" id="bonOut"></span></div>
+     <input type="range" id="bon" min="0" max="50" step="1" aria-label="Доля команды в Маниле, процентов чистой прибыли">
+     <div class="ctl-hint">продажи, логистика, таможня, площадки: доля в чистой прибыли своей компании</div>
+    </div>
+    <div class="ctl">
+     <div class="ctl-head"><span class="ctl-name">Связи и сопровождение</span><span class="ctl-val" id="prOut"></span></div>
+     <input type="range" id="pr" min="0" max="3" step="0.1" aria-label="Вознаграждение за связи, процентов выручки">
+     <div class="ctl-hint">знакомства, выход на госорганы и покупателей: процент с выручки в Маниле</div>
+    </div>
+   </div>
+   <div class="card">
+    <div class="ctl-name" id="splitTitle">Куда уходит маржа в Маниле за год</div>
+    <div class="bar" id="splitBar" role="img" aria-label="Распределение маржи в Маниле"></div>
+    <ul class="legend" id="splitLeg"></ul>
+   </div>
+  </div>
+  <div class="cmp-year">
+   <div class="kpi"><div class="l">Команде в Маниле, за год</div><div class="v" id="pBon">—</div><div class="s" id="pBonS">доля в чистой прибыли</div></div>
+   <div class="kpi"><div class="l">За связи и сопровождение, за год</div><div class="v" id="pPr">—</div><div class="s" id="pPrS">процент с выручки</div></div>
+   <div class="kpi hl"><div class="l">Остаётся нам, чистыми</div><div class="v" id="pUs">—</div><div class="s" id="pUsS">после налога и партнёров</div></div>
   </div>
  </section>
 
@@ -412,7 +446,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   <div class="kpis">
    <div class="kpi"><div class="l">Выручка своей компании</div><div class="v" id="kRev">—</div><div class="s">продажи в Маниле</div></div>
    <div class="kpi"><div class="l">Прибыль до налога</div><div class="v" id="kPre">—</div><div class="s">после содержания компании</div></div>
-   <div class="kpi"><div class="l">Чистая прибыль</div><div class="v" id="kNet" style="color:var(--good)">—</div><div class="s">после налога 25% на Филиппинах</div></div>
+   <div class="kpi"><div class="l">Наша чистая прибыль</div><div class="v" id="kNet" style="color:var(--good)">—</div><div class="s">после налога 25% и доли партнёров</div></div>
    <div class="kpi"><div class="l">Деньги в обороте</div><div class="v" id="kWc">—</div><div class="s">закупки на 3 месяца вперёд</div></div>
   </div>
  </section>
@@ -442,6 +476,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
    <h2 style="font-size:18px">Откуда цифры</h2>
    <div class="notes">
     <ul>
+     <li><b>Доля партнёров</b> — предположение для расчёта, условия не обсуждались. Вознаграждение за связи считается расходом до налога, доля команды в Маниле — из чистой прибыли своей компании. Цель вверху — то, что остаётся нам после обоих.</li>
      <li><b>Цены завода</b> — фактические отгрузки МПК Атяшевский на Филиппины в феврале–июле 2026 года: 376 т, 14 контейнеров; щековина в среднем $1,89 за кг, грудинка $2,95–3,15 (CFR Манила). Подлопаточные рёбра — $2,25 по экспортному прайсу Талины.</li>
      <li><b>Цены продажи в Маниле:</b> опт импортной обрези для переработчиков ₱210–250 (партнёры в Маниле, октябрь 2026); импортная замороженная грудинка ₱300 в рознице (Минсельхоз Филиппин, 20.10.2026, <a href="https://context.ph/2026/10/20/da-moves-to-support-local-hog-producers-amid-low-farmgate-prices/">Context.ph</a>), опт ≈ 84% от розницы; рёбра — опт ₱290–330 за охлаждённые с поправкой на заморозку.</li>
      <li><b>Цены в России</b> — данные Талины: щековина 91–176 ₽ за кг, в среднем ≈ 126 ₽ (февраль–июль 2026); грудинка н/к ≈ 204 ₽, б/к ≈ 231 ₽; подлопаточные рёбра 165 ₽ (октябрь 2026). <b>Фрахт</b> до Манилы — $5 000 за 40-футовый рефконтейнер (27 т), ставка уточняется у экспедитора.</li>
@@ -470,12 +505,12 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     { id: "ribs", name: "Подлопаточные рёбра", sub: "барбекю, синиганг", cfr: 2.25, sell: 218, dom: 165, domSrc: "октябрь 2026" },
   ];
 
-  const S = { goal: 100, cfr: 2.15, sell: 219, duty: 0.15, cost: 20, dom: 147, fr: 5000, preset: "mix" };
+  const S = { goal: 100, cfr: 2.15, sell: 219, duty: 0.15, cost: 20, dom: 147, fr: 5000, bon: 25, pr: 1, preset: "mix" };
 
   // Настройки из ссылки
   try {
     const h = new URLSearchParams(location.hash.slice(1));
-    for (const k of ["goal", "cfr", "sell", "duty", "cost", "dom", "fr"]) if (h.has(k) && !isNaN(+h.get(k))) S[k] = +h.get(k);
+    for (const k of ["goal", "cfr", "sell", "duty", "cost", "dom", "fr", "bon", "pr"]) if (h.has(k) && !isNaN(+h.get(k))) S[k] = +h.get(k);
     if (h.has("p")) S.preset = h.get("p");
   } catch (e) {}
 
@@ -496,16 +531,51 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     const m = S.sell - landed;
     return { cfrP, duty, fin, landed, m, mRub: m * RUB_PHP };
   }
+  // Партнёры: команда в Маниле — доля чистой прибыли (S.bon, %), связи — процент с выручки (S.pr, %)
+  const commKg = () => S.sell * RUB_PHP * S.pr / 100;
   function year(t, u) {
     const kg = t * 1000;
     const rev = kg * S.sell * RUB_PHP;
-    const pre = kg * u.mRub - FIXED;
-    const net = pre > 0 ? pre * (1 - TAX) : pre;
+    const gross = kg * u.mRub;
+    const comm = kg * commKg();
+    const pre = gross - FIXED - comm;
+    const tax = pre > 0 ? pre * TAX : 0;
+    const netCo = pre - tax;
+    const bon = netCo > 0 ? netCo * S.bon / 100 : 0;
+    const net = netCo - bon;                                  // остаётся нам
     const wc = kg * CYCLE_M / 12 * u.landed * RUB_PHP;
     const plant = kg * S.cfr * RUB_USD;
-    return { rev, pre, net, wc, plant };
+    return { rev, gross, comm, pre, tax, netCo, bon, net, wc, plant };
   }
-  const needTonnes = (goalRub, u) => u.mRub > 0 ? (goalRub / (1 - TAX) + FIXED) / u.mRub / 1000 : Infinity;
+  const needTonnes = (goalRub, u) => {
+    const mEff = u.mRub - commKg();
+    return mEff > 0 ? (goalRub / ((1 - TAX) * (1 - S.bon / 100)) + FIXED) / mEff / 1000 : Infinity;
+  };
+
+  function renderPartners(T) {
+    $("bonOut").textContent = `${fmt(S.bon)}% прибыли`;
+    $("prOut").textContent = `${fmt(S.pr, 1)}% выручки`;
+    document.querySelectorAll("#ptPresets .preset").forEach(b =>
+      b.setAttribute("aria-pressed", +b.dataset.bon === S.bon && Math.abs(+b.dataset.pr - S.pr) < 1e-9));
+    if (!T) { ["pBon", "pPr", "pUs"].forEach(id => $(id).textContent = "—"); $("splitBar").innerHTML = ""; $("splitLeg").innerHTML = ""; return; }
+    const y = year(T, unit());
+    $("pBon").textContent = mln(y.bon); $("pPr").textContent = mln(y.comm); $("pUs").textContent = mln(y.net);
+    $("pBonS").textContent = `${fmt(S.bon)}% чистой прибыли своей компании`;
+    $("pPrS").textContent = `${fmt(S.pr, 1)}% выручки в Маниле (${mln(y.rev)})`;
+    $("pUsS").textContent = `при ${fmt(roundT(T))} т в год, после налога и партнёров`;
+    $("splitTitle").textContent = `Куда уходит маржа в Маниле: ${mln(y.gross)} в год`;
+    const parts = [
+      { n: "Нам", v: y.net, c: "var(--s5)" },
+      { n: "Команде в Маниле", v: y.bon, c: "var(--accent)" },
+      { n: "За связи и сопровождение", v: y.comm, c: "var(--s3)" },
+      { n: "Налог на Филиппинах", v: y.tax, c: "var(--s2)" },
+      { n: "Содержание компании", v: FIXED, c: "var(--s4)" },
+    ];
+    $("splitBar").innerHTML = parts.map(p => `<div style="width:${Math.max(p.v, 0) / y.gross * 100}%;background:${p.c}" title="${p.n}"></div>`).join("");
+    $("splitLeg").innerHTML = parts.slice(1).concat(parts[0]).map(p =>
+      `<li><span class="sw" style="background:${p.c}"></span><span class="nm">${p.n}</span><span class="vv">${mln(p.v)}<small>${fmt(p.v / y.gross * 100)}%</small></span></li>`
+    ).join("");
+  }
 
   const pw = $("presets");
   PRESETS.forEach(p => {
@@ -522,13 +592,14 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     el.addEventListener("input", () => { S[key] = +el.value; if (key === "cfr" || key === "sell") S.preset = ""; render(); });
   };
   bindRange("goal", "goal"); bindRange("cfr", "cfr"); bindRange("sell", "sell"); bindRange("cost", "cost");
-  bindRange("dom", "dom"); bindRange("fr", "fr");
+  bindRange("dom", "dom"); bindRange("fr", "fr"); bindRange("bon", "bon"); bindRange("pr", "pr");
+  document.querySelectorAll("#ptPresets .preset").forEach(b => b.onclick = () => { S.bon = +b.dataset.bon; S.pr = +b.dataset.pr; sync(); });
   document.querySelectorAll("#duty button").forEach(b => b.onclick = () => { S.duty = +b.dataset.v; render(); });
   document.querySelectorAll("#goalChips .chip").forEach(b => b.onclick = () => { S.goal = +b.dataset.v; sync(); });
 
   function sync() {
     $("goal").value = S.goal; $("cfr").value = S.cfr; $("sell").value = S.sell; $("cost").value = S.cost;
-    $("dom").value = S.dom; $("fr").value = S.fr;
+    $("dom").value = S.dom; $("fr").value = S.fr; $("bon").value = S.bon; $("pr").value = S.pr;
     render();
   }
 
@@ -568,7 +639,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   }
 
   function render() {
-    ["goal", "cfr", "sell", "cost", "dom", "fr"].forEach(id => fill($(id)));
+    ["goal", "cfr", "sell", "cost", "dom", "fr", "bon", "pr"].forEach(id => fill($(id)));
     const u = unit();
     const T = needTonnes(S.goal * 1e6, u);
     const ok = isFinite(T);
@@ -624,11 +695,11 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
       $("ctrs").innerHTML = "";
     }
 
-    renderCompare(u, ok ? T : null);
+    renderCompare(u, ok ? T : null); renderPartners(ok ? T : null);
     drawChart(u, ok ? T : null);
     drawTable(u, ok ? T : null);
 
-    try { history.replaceState(null, "", "#" + new URLSearchParams({ goal: S.goal, cfr: S.cfr, sell: S.sell, duty: S.duty, cost: S.cost, dom: S.dom, fr: S.fr, p: S.preset })); } catch (e) {}
+    try { history.replaceState(null, "", "#" + new URLSearchParams({ goal: S.goal, cfr: S.cfr, sell: S.sell, duty: S.duty, cost: S.cost, dom: S.dom, fr: S.fr, bon: S.bon, pr: S.pr, p: S.preset })); } catch (e) {}
   }
 
   // График
