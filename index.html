@@ -310,7 +310,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
      <div class="ctl-hint">знакомства, выход на госорганы и покупателей: процент с выручки в Маниле</div>
     </div>
     <div class="ctl">
-     <div class="ctl-head"><span class="ctl-name">Своя команда в Маниле</span><span class="ctl-val" id="teamOut"></span></div>
+     <div class="ctl-head"><span class="ctl-name">Команда в Маниле</span><span class="ctl-val" id="teamOut"></span></div>
      <input type="range" id="team" min="0" max="15" step="0.1" aria-label="Зарплаты команды в Маниле, млн рублей в год">
      <div class="ctl-hint">директор, двое продажников, логист: ≈ ₱3,7 млн в год по зарплатам Манилы</div>
     </div>
@@ -327,7 +327,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
    <div class="pb" id="pbLong"></div>
   </div>
   <div class="cmp-year">
-   <div class="kpi"><div class="l">Своей команде в Маниле, за год</div><div class="v" id="pTeam">—</div><div class="s">зарплаты, вместо доли в прибыли</div></div>
+   <div class="kpi"><div class="l">Команде в Маниле, за год</div><div class="v" id="pTeam">—</div><div class="s">зарплаты, вместо доли в прибыли</div></div>
    <div class="kpi"><div class="l">За связи и сопровождение, за год</div><div class="v" id="pPr">—</div><div class="s" id="pPrS">процент с выручки</div></div>
    <div class="kpi hl"><div class="l">Остаётся ГК «Талина», чистыми</div><div class="v" id="pUs">—</div><div class="s" id="pUsS">после налога, команды и связей</div></div>
   </div>
@@ -485,7 +485,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
    <h2 style="font-size:18px">Откуда цифры</h2>
    <div class="notes">
     <ul>
-     <li><b>Команда и связи</b> — предположение для расчёта, условия не обсуждались. Своя команда в Маниле: директор, двое продажников и логист, ≈ ₱3,7 млн в год (<a href="https://www.payscale.com/research/PH/Job=General_%2F_Operations_Manager/Salary">Payscale</a>, <a href="https://ph.indeed.com/career/manager/salaries">Indeed</a>). Вознаграждение за связи — процент с выручки, расход до налога; для сравнения, агенты по мясу берут 2–5% с суммы сделки. Рост объёма для долгого варианта — допущение: 40% → 75% → 100% цели за 3 года.</li>
+     <li><b>Команда и связи</b> — предположение для расчёта, условия не обсуждались. Команда в Маниле: директор, двое продажников и логист, ≈ ₱3,7 млн в год (<a href="https://www.payscale.com/research/PH/Job=General_%2F_Operations_Manager/Salary">Payscale</a>, <a href="https://ph.indeed.com/career/manager/salaries">Indeed</a>). Вознаграждение за связи — процент с выручки, расход до налога; для сравнения, агенты по мясу берут 2–5% с суммы сделки. Рост объёма для долгого варианта — допущение: 40% → 75% → 100% цели за 3 года.</li>
      <li><b>Цены завода</b> — фактические отгрузки МПК Атяшевский на Филиппины в феврале–июле 2026 года: 376 т, 14 контейнеров; щековина в среднем $1,89 за кг, грудинка $2,95–3,15 (CFR Манила). Подлопаточные рёбра — $2,25 по экспортному прайсу Талины.</li>
      <li><b>Цены продажи в Маниле:</b> опт импортной обрези для переработчиков ₱210–250 (партнёры в Маниле, октябрь 2026); импортная замороженная грудинка ₱300 в рознице (Минсельхоз Филиппин, 20.10.2026, <a href="https://context.ph/2026/10/20/da-moves-to-support-local-hog-producers-amid-low-farmgate-prices/">Context.ph</a>), опт ≈ 84% от розницы; рёбра — опт ₱290–330 за охлаждённые с поправкой на заморозку.</li>
      <li><b>Цены в России</b> — данные Талины: щековина 91–176 ₽ за кг, в среднем ≈ 126 ₽ (февраль–июль 2026); грудинка н/к ≈ 204 ₽, б/к ≈ 231 ₽; подлопаточные рёбра 165 ₽ (октябрь 2026). <b>Фрахт</b> до Манилы — $5 000 за 40-футовый рефконтейнер (27 т), ставка уточняется у экспедитора.</li>
@@ -539,7 +539,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
     const m = S.sell - landed;
     return { cfrP, duty, fin, landed, m, mRub: m * RUB_PHP };
   }
-  // Своя команда в Маниле — зарплаты (S.team, млн ₽ в год); связи — процент с выручки (S.pr, %) на S.term лет
+  // Команда в Маниле — зарплаты (S.team, млн ₽ в год); связи — процент с выручки (S.pr, %) на S.term лет
   const commKg = () => S.sell * RUB_PHP * S.pr / 100;
   const fixedAll = () => FIXED + S.team * 1e6;
   function year(t, u) {
@@ -587,7 +587,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
     $("splitTitle").textContent = `Куда уходит маржа в Маниле: ${mln(y.gross)} в год`;
     const parts = [
       { n: "ГК «Талина»", v: y.net, c: "var(--s5)" },
-      { n: "Своя команда в Маниле", v: y.team, c: "var(--accent)" },
+      { n: "Команда в Маниле", v: y.team, c: "var(--accent)" },
       { n: "За связи и сопровождение", v: y.comm, c: "var(--s3)" },
       { n: "Налог на Филиппинах", v: y.tax, c: "var(--s2)" },
       { n: "Содержание компании", v: FIXED, c: "var(--s4)" },
