@@ -157,7 +157,7 @@ svg.chart { width: 100%; height: auto; display: block; touch-action: none; }
 .pb-t { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; font-weight: 600; margin-bottom: 4px; }
 .pb-row { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 10px; align-items: center; padding: 6px; margin: 0 -6px; border-radius: 8px; }
 .pb-row.click { cursor: pointer; }
-.pb-row.click:hover, .pb-row.click:focus-visible { background: var(--accent-soft); outline: none; }
+.pb-row.click:hover, .pb-row.click:focus-visible, .pb-row.on { background: var(--accent-soft); outline: none; }
 .pb-l { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.2; }
 .pb-l small { display: block; font-weight: 400; color: var(--muted); font-size: 11px; }
 .pb-bars { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
@@ -222,7 +222,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   <h1>Сколько нужно поставить на Филиппины, чтобы заработать столько, сколько хотим</h1>
   <div class="goal">
    <div class="goal-box">
-    <p class="lbl">Хотим оставить себе за год, чистыми — после налога и партнёров</p>
+    <p class="lbl">Хотим оставить себе за год, чистыми — после налога, команды и связей</p>
     <div class="goal-val"><span id="goalOut">100</span> <small id="goalUnit">млн ₽</small></div>
     <input type="range" id="goal" min="10" max="1000" step="10" value="100" aria-label="Цель по чистой прибыли, млн рублей">
     <div class="chips" id="goalChips">
@@ -291,24 +291,24 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
  </section>
 
  <section class="sec" id="partners">
-  <h2>Партнёры в Маниле: сколько возьмут и что останется нам</h2>
-  <p class="sec-lead">Партнёры помогают, потому что тоже хотят заработать. Их доля — предположение: условия ещё не обсуждались. Выберите вариант или двигайте ползунки — объём для цели вверху пересчитается.</p>
+  <h2>Команда и связи в Маниле: сколько стоят и что останется нам</h2>
+  <p class="sec-lead">Продажи и логистику ведёт своя нанятая команда. Тем, кто открывает двери, платим небольшой процент с выручки, зато надолго: им выгоднее зарабатывать годами. Двигайте ползунки — объём для цели вверху пересчитается.</p>
   <div class="grid2">
    <div class="card">
     <div class="presets" id="ptPresets">
-     <button class="preset" data-bon="15" data-pr="0.5">Скромно<small>15% прибыли + 0,5% выручки</small></button>
-     <button class="preset" data-bon="25" data-pr="1">Обычно<small>25% прибыли + 1% выручки</small></button>
-     <button class="preset" data-bon="40" data-pr="2">Щедро<small>40% прибыли + 2% выручки</small></button>
-    </div>
-    <div class="ctl">
-     <div class="ctl-head"><span class="ctl-name">Команда в Маниле</span><span class="ctl-val" id="bonOut"></span></div>
-     <input type="range" id="bon" min="0" max="50" step="1" aria-label="Доля команды в Маниле, процентов чистой прибыли">
-     <div class="ctl-hint">продажи, логистика, таможня, площадки: доля в чистой прибыли своей компании</div>
+     <button class="preset" data-pr="0.3" data-term="10">Минимум<small>0,3% выручки на 10 лет</small></button>
+     <button class="preset" data-pr="0.5" data-term="10">Рекомендуем<small>0,5% выручки на 10 лет</small></button>
+     <button class="preset" data-pr="1" data-term="3">Быстро<small>1% выручки на 3 года</small></button>
     </div>
     <div class="ctl">
      <div class="ctl-head"><span class="ctl-name">Связи и сопровождение</span><span class="ctl-val" id="prOut"></span></div>
-     <input type="range" id="pr" min="0" max="3" step="0.1" aria-label="Вознаграждение за связи, процентов выручки">
+     <input type="range" id="pr" min="0" max="2" step="0.1" aria-label="Вознаграждение за связи, процентов выручки">
      <div class="ctl-hint">знакомства, выход на госорганы и покупателей: процент с выручки в Маниле</div>
+    </div>
+    <div class="ctl">
+     <div class="ctl-head"><span class="ctl-name">Своя команда в Маниле</span><span class="ctl-val" id="teamOut"></span></div>
+     <input type="range" id="team" min="0" max="15" step="0.1" aria-label="Зарплаты команды в Маниле, млн рублей в год">
+     <div class="ctl-hint">директор, двое продажников, логист: ≈ ₱3,7 млн в год по зарплатам Манилы</div>
     </div>
    </div>
    <div class="card">
@@ -317,10 +317,15 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     <ul class="legend" id="splitLeg"></ul>
    </div>
   </div>
+  <div class="card" style="margin-top:16px">
+   <div class="ctl-name">Связям выгоднее в долгую</div>
+   <p class="ctl-hint" style="margin:2px 0 10px">Сколько они получат за всё время (длина полосы), если объём выходит на цель за 3 года (40% → 75% → 100%). Нажмите на строку, чтобы выбрать вариант.</p>
+   <div class="pb" id="pbLong"></div>
+  </div>
   <div class="cmp-year">
-   <div class="kpi"><div class="l">Команде в Маниле, за год</div><div class="v" id="pBon">—</div><div class="s" id="pBonS">доля в чистой прибыли</div></div>
+   <div class="kpi"><div class="l">Своей команде в Маниле, за год</div><div class="v" id="pTeam">—</div><div class="s">зарплаты, вместо доли в прибыли</div></div>
    <div class="kpi"><div class="l">За связи и сопровождение, за год</div><div class="v" id="pPr">—</div><div class="s" id="pPrS">процент с выручки</div></div>
-   <div class="kpi hl"><div class="l">Остаётся нам, чистыми</div><div class="v" id="pUs">—</div><div class="s" id="pUsS">после налога и партнёров</div></div>
+   <div class="kpi hl"><div class="l">Остаётся нам, чистыми</div><div class="v" id="pUs">—</div><div class="s" id="pUsS">после налога, команды и связей</div></div>
   </div>
  </section>
 
@@ -446,7 +451,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   <div class="kpis">
    <div class="kpi"><div class="l">Выручка своей компании</div><div class="v" id="kRev">—</div><div class="s">продажи в Маниле</div></div>
    <div class="kpi"><div class="l">Прибыль до налога</div><div class="v" id="kPre">—</div><div class="s">после содержания компании</div></div>
-   <div class="kpi"><div class="l">Наша чистая прибыль</div><div class="v" id="kNet" style="color:var(--good)">—</div><div class="s">после налога 25% и доли партнёров</div></div>
+   <div class="kpi"><div class="l">Наша чистая прибыль</div><div class="v" id="kNet" style="color:var(--good)">—</div><div class="s">после налога 25%, команды и связей</div></div>
    <div class="kpi"><div class="l">Деньги в обороте</div><div class="v" id="kWc">—</div><div class="s">закупки на 3 месяца вперёд</div></div>
   </div>
  </section>
@@ -476,7 +481,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
    <h2 style="font-size:18px">Откуда цифры</h2>
    <div class="notes">
     <ul>
-     <li><b>Доля партнёров</b> — предположение для расчёта, условия не обсуждались. Вознаграждение за связи считается расходом до налога, доля команды в Маниле — из чистой прибыли своей компании. Цель вверху — то, что остаётся нам после обоих.</li>
+     <li><b>Команда и связи</b> — предположение для расчёта, условия не обсуждались. Своя команда в Маниле: директор, двое продажников и логист, ≈ ₱3,7 млн в год (<a href="https://www.payscale.com/research/PH/Job=General_%2F_Operations_Manager/Salary">Payscale</a>, <a href="https://ph.indeed.com/career/manager/salaries">Indeed</a>). Вознаграждение за связи — процент с выручки, расход до налога; для сравнения, агенты по мясу берут 2–5% с суммы сделки. Рост объёма для долгого варианта — допущение: 40% → 75% → 100% цели за 3 года.</li>
      <li><b>Цены завода</b> — фактические отгрузки МПК Атяшевский на Филиппины в феврале–июле 2026 года: 376 т, 14 контейнеров; щековина в среднем $1,89 за кг, грудинка $2,95–3,15 (CFR Манила). Подлопаточные рёбра — $2,25 по экспортному прайсу Талины.</li>
      <li><b>Цены продажи в Маниле:</b> опт импортной обрези для переработчиков ₱210–250 (партнёры в Маниле, октябрь 2026); импортная замороженная грудинка ₱300 в рознице (Минсельхоз Филиппин, 20.10.2026, <a href="https://context.ph/2026/10/20/da-moves-to-support-local-hog-producers-amid-low-farmgate-prices/">Context.ph</a>), опт ≈ 84% от розницы; рёбра — опт ₱290–330 за охлаждённые с поправкой на заморозку.</li>
      <li><b>Цены в России</b> — данные Талины: щековина 91–176 ₽ за кг, в среднем ≈ 126 ₽ (февраль–июль 2026); грудинка н/к ≈ 204 ₽, б/к ≈ 231 ₽; подлопаточные рёбра 165 ₽ (октябрь 2026). <b>Фрахт</b> до Манилы — $5 000 за 40-футовый рефконтейнер (27 т), ставка уточняется у экспедитора.</li>
@@ -505,12 +510,12 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     { id: "ribs", name: "Подлопаточные рёбра", sub: "барбекю, синиганг", cfr: 2.25, sell: 218, dom: 165, domSrc: "октябрь 2026" },
   ];
 
-  const S = { goal: 100, cfr: 2.15, sell: 219, duty: 0.15, cost: 20, dom: 147, fr: 5000, bon: 25, pr: 1, preset: "mix" };
+  const S = { goal: 100, cfr: 2.15, sell: 219, duty: 0.15, cost: 20, dom: 147, fr: 5000, team: 4.7, pr: 0.5, term: 10, preset: "mix" };
 
   // Настройки из ссылки
   try {
     const h = new URLSearchParams(location.hash.slice(1));
-    for (const k of ["goal", "cfr", "sell", "duty", "cost", "dom", "fr", "bon", "pr"]) if (h.has(k) && !isNaN(+h.get(k))) S[k] = +h.get(k);
+    for (const k of ["goal", "cfr", "sell", "duty", "cost", "dom", "fr", "team", "pr", "term"]) if (h.has(k) && !isNaN(+h.get(k))) S[k] = +h.get(k);
     if (h.has("p")) S.preset = h.get("p");
   } catch (e) {}
 
@@ -531,42 +536,55 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     const m = S.sell - landed;
     return { cfrP, duty, fin, landed, m, mRub: m * RUB_PHP };
   }
-  // Партнёры: команда в Маниле — доля чистой прибыли (S.bon, %), связи — процент с выручки (S.pr, %)
+  // Своя команда в Маниле — зарплаты (S.team, млн ₽ в год); связи — процент с выручки (S.pr, %) на S.term лет
   const commKg = () => S.sell * RUB_PHP * S.pr / 100;
+  const fixedAll = () => FIXED + S.team * 1e6;
   function year(t, u) {
     const kg = t * 1000;
     const rev = kg * S.sell * RUB_PHP;
     const gross = kg * u.mRub;
     const comm = kg * commKg();
-    const pre = gross - FIXED - comm;
+    const team = S.team * 1e6;
+    const pre = gross - FIXED - team - comm;
     const tax = pre > 0 ? pre * TAX : 0;
-    const netCo = pre - tax;
-    const bon = netCo > 0 ? netCo * S.bon / 100 : 0;
-    const net = netCo - bon;                                  // остаётся нам
+    const net = pre - tax;                                    // остаётся нам
     const wc = kg * CYCLE_M / 12 * u.landed * RUB_PHP;
     const plant = kg * S.cfr * RUB_USD;
-    return { rev, gross, comm, pre, tax, netCo, bon, net, wc, plant };
+    return { rev, gross, comm, team, pre, tax, net, wc, plant };
   }
   const needTonnes = (goalRub, u) => {
     const mEff = u.mRub - commKg();
-    return mEff > 0 ? (goalRub / ((1 - TAX) * (1 - S.bon / 100)) + FIXED) / mEff / 1000 : Infinity;
+    return mEff > 0 ? (goalRub / (1 - TAX) + fixedAll()) / mEff / 1000 : Infinity;
+  };
+
+  // Вознаграждение за связи: короткий срок против долгого. Объём растёт до цели за 3 года.
+  const LONG = [
+    { pr: 1, term: 3, n: "1% на 3 года" },
+    { pr: 0.5, term: 5, n: "0,5% на 5 лет" },
+    { pr: 0.5, term: 10, n: "0,5% на 10 лет" },
+    { pr: 0.3, term: 10, n: "0,3% на 10 лет" },
+  ];
+  const RAMP = [0.4, 0.75];
+  const longTotal = (T, pr, term) => {
+    let s = 0;
+    for (let i = 0; i < term; i++) s += (RAMP[i] ?? 1) * T * 1000 * S.sell * RUB_PHP * pr / 100;
+    return s;
   };
 
   function renderPartners(T) {
-    $("bonOut").textContent = `${fmt(S.bon)}% прибыли`;
+    $("teamOut").textContent = `${fmt(S.team, 1)} млн ₽ в год`;
     $("prOut").textContent = `${fmt(S.pr, 1)}% выручки`;
     document.querySelectorAll("#ptPresets .preset").forEach(b =>
-      b.setAttribute("aria-pressed", +b.dataset.bon === S.bon && Math.abs(+b.dataset.pr - S.pr) < 1e-9));
-    if (!T) { ["pBon", "pPr", "pUs"].forEach(id => $(id).textContent = "—"); $("splitBar").innerHTML = ""; $("splitLeg").innerHTML = ""; return; }
+      b.setAttribute("aria-pressed", Math.abs(+b.dataset.pr - S.pr) < 1e-9 && +b.dataset.term === S.term));
+    if (!T) { ["pTeam", "pPr", "pUs"].forEach(id => $(id).textContent = "—"); ["splitBar", "splitLeg", "pbLong"].forEach(id => $(id).innerHTML = ""); return; }
     const y = year(T, unit());
-    $("pBon").textContent = mln(y.bon); $("pPr").textContent = mln(y.comm); $("pUs").textContent = mln(y.net);
-    $("pBonS").textContent = `${fmt(S.bon)}% чистой прибыли своей компании`;
-    $("pPrS").textContent = `${fmt(S.pr, 1)}% выручки в Маниле (${mln(y.rev)})`;
-    $("pUsS").textContent = `при ${fmt(roundT(T))} т в год, после налога и партнёров`;
+    $("pTeam").textContent = mln(y.team); $("pPr").textContent = mln(y.comm); $("pUs").textContent = mln(y.net);
+    $("pPrS").textContent = `${fmt(S.pr, 1)}% выручки в Маниле (${mln(y.rev)}), ${fmt(S.term)} лет`;
+    $("pUsS").textContent = `при ${fmt(roundT(T))} т в год, после налога, команды и связей`;
     $("splitTitle").textContent = `Куда уходит маржа в Маниле: ${mln(y.gross)} в год`;
     const parts = [
       { n: "Нам", v: y.net, c: "var(--s5)" },
-      { n: "Команде в Маниле", v: y.bon, c: "var(--accent)" },
+      { n: "Своя команда в Маниле", v: y.team, c: "var(--accent)" },
       { n: "За связи и сопровождение", v: y.comm, c: "var(--s3)" },
       { n: "Налог на Филиппинах", v: y.tax, c: "var(--s2)" },
       { n: "Содержание компании", v: FIXED, c: "var(--s4)" },
@@ -575,6 +593,17 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     $("splitLeg").innerHTML = parts.slice(1).concat(parts[0]).map(p =>
       `<li><span class="sw" style="background:${p.c}"></span><span class="nm">${p.n}</span><span class="vv">${mln(p.v)}<small>${fmt(p.v / y.gross * 100)}%</small></span></li>`
     ).join("");
+    const rows = LONG.map(o => ({ ...o, tot: longTotal(T, o.pr, o.term), yr: T * 1000 * S.sell * RUB_PHP * o.pr / 100 }));
+    const max = Math.max(...rows.map(r => r.tot));
+    $("pbLong").innerHTML = rows.map(r => {
+      const on = Math.abs(r.pr - S.pr) < 1e-9 && r.term === S.term;
+      return `<div class="pb-row click${on ? " on" : ""}" data-pr="${r.pr}" data-term="${r.term}" role="button" tabindex="0"><span class="pb-l">${r.n} ↗<small>нам стоит ${mln(r.yr)} в год</small></span><div class="pb-bars"><div class="pb-bar" style="width:${r.tot / max * 100}%;background:${on ? "var(--good)" : "var(--s3)"}">${mln(r.tot)}</div></div></div>`;
+    }).join("");
+    $("pbLong").querySelectorAll(".pb-row").forEach(el => {
+      const pick = () => { S.pr = +el.dataset.pr; S.term = +el.dataset.term; sync(); };
+      el.addEventListener("click", pick);
+      el.addEventListener("keydown", e => { if (e.key === "Enter") pick(); });
+    });
   }
 
   const pw = $("presets");
@@ -592,14 +621,14 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     el.addEventListener("input", () => { S[key] = +el.value; if (key === "cfr" || key === "sell") S.preset = ""; render(); });
   };
   bindRange("goal", "goal"); bindRange("cfr", "cfr"); bindRange("sell", "sell"); bindRange("cost", "cost");
-  bindRange("dom", "dom"); bindRange("fr", "fr"); bindRange("bon", "bon"); bindRange("pr", "pr");
-  document.querySelectorAll("#ptPresets .preset").forEach(b => b.onclick = () => { S.bon = +b.dataset.bon; S.pr = +b.dataset.pr; sync(); });
+  bindRange("dom", "dom"); bindRange("fr", "fr"); bindRange("team", "team"); bindRange("pr", "pr");
+  document.querySelectorAll("#ptPresets .preset").forEach(b => b.onclick = () => { S.pr = +b.dataset.pr; S.term = +b.dataset.term; sync(); });
   document.querySelectorAll("#duty button").forEach(b => b.onclick = () => { S.duty = +b.dataset.v; render(); });
   document.querySelectorAll("#goalChips .chip").forEach(b => b.onclick = () => { S.goal = +b.dataset.v; sync(); });
 
   function sync() {
     $("goal").value = S.goal; $("cfr").value = S.cfr; $("sell").value = S.sell; $("cost").value = S.cost;
-    $("dom").value = S.dom; $("fr").value = S.fr; $("bon").value = S.bon; $("pr").value = S.pr;
+    $("dom").value = S.dom; $("fr").value = S.fr; $("team").value = S.team; $("pr").value = S.pr;
     render();
   }
 
@@ -639,7 +668,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   }
 
   function render() {
-    ["goal", "cfr", "sell", "cost", "dom", "fr", "bon", "pr"].forEach(id => fill($(id)));
+    ["goal", "cfr", "sell", "cost", "dom", "fr", "team", "pr"].forEach(id => fill($(id)));
     const u = unit();
     const T = needTonnes(S.goal * 1e6, u);
     const ok = isFinite(T);
@@ -699,7 +728,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     drawChart(u, ok ? T : null);
     drawTable(u, ok ? T : null);
 
-    try { history.replaceState(null, "", "#" + new URLSearchParams({ goal: S.goal, cfr: S.cfr, sell: S.sell, duty: S.duty, cost: S.cost, dom: S.dom, fr: S.fr, bon: S.bon, pr: S.pr, p: S.preset })); } catch (e) {}
+    try { history.replaceState(null, "", "#" + new URLSearchParams({ goal: S.goal, cfr: S.cfr, sell: S.sell, duty: S.duty, cost: S.cost, dom: S.dom, fr: S.fr, team: S.team, pr: S.pr, term: S.term, p: S.preset })); } catch (e) {}
   }
 
   // График
