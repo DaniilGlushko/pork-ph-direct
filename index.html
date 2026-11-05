@@ -158,7 +158,7 @@ svg.chart { width: 100%; height: auto; display: block; touch-action: none; }
 /* Сравнение каналов */
 .cmp-row { display: grid; grid-template-columns: 220px 1fr 130px; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid var(--line); }
 .cmp-row:first-of-type { border-top: 0; padding-top: 4px; }
-@media (max-width: 640px) { .cmp-row { grid-template-columns: 1fr auto; } .cmp-row .cmp-bar { grid-column: 1 / -1; grid-row: 2; } .cmp-bar > div { font-size: 0; } }
+@media (max-width: 640px) { .cmp-row { grid-template-columns: 1fr auto; } .cmp-row .cmp-bar { grid-column: 1 / -1; grid-row: 2; } .cmp-row .cmp-bar > div { font-size: 0; } }
 .cmp-name { font-weight: 600; color: var(--ink); }
 .cmp-name small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
 .cmp-bar { display: flex; height: 26px; background: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 10%); }
@@ -225,11 +225,11 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
 
 <header class="hero">
  <div class="wrap">
-  <div class="mast"><span>Talina · экспорт свинины</span><span>Филиппины · своя компания в Маниле</span></div>
-  <h1 class="lede">Чтобы оставить себе <em><span id="goalOut">100</span> <span id="goalUnit">млн ₽</span></em> в&nbsp;год, нужно поставить на&nbsp;Филиппины <em class="t"><span id="needT">—</span>&nbsp;т</em></h1>
+  <div class="mast"><span>Talina · экспорт свинины</span><span>Филиппины · компания ГК «Талина» в Маниле</span></div>
+  <h1 class="lede">Чтобы ГК «Талина» получала <em><span id="goalOut">100</span> <span id="goalUnit">млн ₽</span></em> чистой прибыли в&nbsp;год, нужно поставлять на&nbsp;Филиппины <em class="t"><span id="needT">—</span>&nbsp;т</em></h1>
   <div class="goal">
    <div>
-    <p class="lbl">Цель — чистыми за год, после налога, команды и связей</p>
+    <p class="lbl">Цель — чистая прибыль за год, после налогов, команды и связей</p>
     <input type="range" id="goal" min="10" max="1000" step="10" value="100" aria-label="Цель по чистой прибыли, млн рублей">
     <div class="chips" id="goalChips">
      <button class="chip" data-v="50">50 млн</button>
@@ -246,8 +246,8 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
    </div>
   </div>
   <div class="gain" role="button" tabindex="0" data-go="cmp">
-   <div><div class="gain-l">Выгода группы против продажи в России</div><div class="gain-v" id="heroGain">—</div><div class="gain-s">в год: завод + чистая прибыль своей компании</div></div>
-   <div><div class="gain-l">Против продажи через компании-посредники</div><div class="gain-v" id="heroVsTr">—</div><div class="gain-s">в год остаётся в группе, а не у посредников</div></div>
+   <div><div class="gain-l">Выгода группы против продажи в России</div><div class="gain-v" id="heroGain">—</div><div class="gain-s">в год: завод + чистая прибыль компании Талины в Маниле</div></div>
+   <div><div class="gain-l">Против экспорта через посредников</div><div class="gain-v" id="heroVsTr">—</div><div class="gain-s">в год остаётся в группе, а не у посредников</div></div>
    <div><div class="gain-l">Каждый килограмм напрямую</div><div class="gain-v" id="heroPct">—</div><div class="gain-s">к цене в России</div></div>
   </div>
  </div>
@@ -256,21 +256,21 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
 <main class="wrap">
 
  <section class="sec" id="cmp">
-  <h2>Россия, компании-посредники или напрямую: сколько группа получает с 1 кг</h2>
+  <h2>Продавать в России, экспортировать через посредников или напрямую: сколько ГК «Талина» получает с 1 кг</h2>
   <p class="sec-lead" id="cmpLead">Один и тот же килограмм тремя способами. Продукт и цены — из блока «Экономика одного килограмма» ниже.</p>
   <div class="card">
    <div class="cmp-row">
-    <div class="cmp-name">Продать в России<small>цена на внутреннем рынке</small></div>
+    <div class="cmp-name">Продажа в России<small>цена на внутреннем рынке</small></div>
     <div class="cmp-bar" id="barRu"></div>
     <div class="cmp-val" id="valRu">—</div>
    </div>
    <div class="cmp-row">
-    <div class="cmp-name">Через компании-посредники<small>как в 2026: маржу в Маниле забирают посредники</small></div>
+    <div class="cmp-name">Экспорт через посредников<small>как в 2026: завод продаёт трейдеру, маржу в Маниле забирает посредник</small></div>
     <div class="cmp-bar" id="barTr"></div>
     <div class="cmp-val" id="valTr">—</div>
    </div>
    <div class="cmp-row">
-    <div class="cmp-name">Напрямую, своя компания<small>заводу то же + маржа в Маниле</small></div>
+    <div class="cmp-name">Экспорт напрямую<small>через компанию Талины в Маниле: заводу то же + маржа в Маниле</small></div>
     <div class="cmp-bar" id="barDi"></div>
     <div class="cmp-val" id="valDi">—</div>
    </div>
@@ -288,15 +288,15 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
    </div>
   </div>
   <div class="cmp-year">
-   <div class="kpi"><div class="l" id="yLbl1">Сверх продажи в России, за год</div><div class="v" id="yTr">—</div><div class="s">через компании-посредники</div></div>
-   <div class="kpi hl"><div class="l" id="yLbl2">Сверх продажи в России, за год</div><div class="v" id="yDi">—</div><div class="s">напрямую: завод + чистая прибыль своей компании</div></div>
-   <div class="kpi"><div class="l">Сейчас уходит посредникам, за год</div><div class="v" id="yMid">—</div><div class="s">маржа трейдера и импортёра, которую забирает своя компания</div></div>
+   <div class="kpi"><div class="l" id="yLbl1">Сверх продажи в России, за год</div><div class="v" id="yTr">—</div><div class="s">экспорт через посредников</div></div>
+   <div class="kpi hl"><div class="l" id="yLbl2">Сверх продажи в России, за год</div><div class="v" id="yDi">—</div><div class="s">напрямую: завод + чистая прибыль компании Талины в Маниле</div></div>
+   <div class="kpi"><div class="l">Сейчас уходит посредникам, за год</div><div class="v" id="yMid">—</div><div class="s">маржа трейдера и импортёра, которую заберёт компания Талины в Маниле</div></div>
   </div>
  </section>
 
  <section class="sec" id="partners">
-  <h2>Команда и связи в Маниле: сколько стоят и что останется нам</h2>
-  <p class="sec-lead">Продажи и логистику ведёт своя нанятая команда. Тем, кто открывает двери, платим небольшой процент с выручки, зато надолго: им выгоднее зарабатывать годами. Двигайте ползунки — объём для цели вверху пересчитается.</p>
+  <h2>Команда и связи в Маниле</h2>
+  <p class="sec-lead">Продажи и логистику ведёт нанятая команда компании Талины в Маниле. Тем, кто открывает двери, платим небольшой процент с выручки, зато надолго: им выгоднее зарабатывать годами. Двигайте ползунки — объём для цели вверху пересчитается.</p>
   <div class="grid2">
    <div class="card">
     <div class="presets" id="ptPresets">
@@ -329,7 +329,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
   <div class="cmp-year">
    <div class="kpi"><div class="l">Своей команде в Маниле, за год</div><div class="v" id="pTeam">—</div><div class="s">зарплаты, вместо доли в прибыли</div></div>
    <div class="kpi"><div class="l">За связи и сопровождение, за год</div><div class="v" id="pPr">—</div><div class="s" id="pPrS">процент с выручки</div></div>
-   <div class="kpi hl"><div class="l">Остаётся нам, чистыми</div><div class="v" id="pUs">—</div><div class="s" id="pUsS">после налога, команды и связей</div></div>
+   <div class="kpi hl"><div class="l">Остаётся ГК «Талина», чистыми</div><div class="v" id="pUs">—</div><div class="s" id="pUsS">после налога, команды и связей</div></div>
   </div>
  </section>
 
@@ -392,7 +392,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
      <div class="share"><div style="width:52.2%;background:var(--s1)">Бразилия 52%</div><div style="width:2.9%;background:var(--accent)" title="Россия 2,9%"></div><div style="flex:1;background:var(--s4)">остальные</div></div>
      <div class="pb-leg"><span><i style="background:var(--accent)"></i>Россия 2,9% — есть куда расти</span></div>
     </div>
-    <p>В октябре туша в Бразилии подорожала до $1,98 за кг: производители сдерживают предложение. Чем дороже Бразилия, тем легче нам заходить по нашей цене.</p>
+    <p>В октябре туша в Бразилии подорожала до $1,98 за кг: производители сдерживают предложение. Чем дороже Бразилия, тем легче Талине заходить со своей ценой.</p>
     <div class="src">Источники: <a href="https://meatinfo.ru/blog/egenedelniy-obzor-rinka-myasa-rf-ot-meatinforu-42nedelya-2026-goda-1396">Meatinfo / CEPEA, 19.10.2026</a> · <a href="https://business.inquirer.net/605141/brazil-pork-shipments-to-ph-to-stay-strong">Inquirer: доля Бразилии</a> · доля России: 13 из 455 тыс. т</div>
    </div>
 
@@ -419,7 +419,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
     <div class="ctl">
      <div class="ctl-head"><span class="ctl-name">Цена завода, CFR Манила</span><span class="ctl-val" id="cfrOut"></span></div>
      <input type="range" id="cfr" min="1" max="3" step="0.01" aria-label="Цена завода, долларов за кг">
-     <div class="ctl-hint">сколько своя компания платит заводу за 1 кг с доставкой в Манилу</div>
+     <div class="ctl-hint">сколько компания Талины в Маниле платит заводу за 1 кг с доставкой в Манилу</div>
     </div>
     <div class="ctl">
      <div class="ctl-head"><span class="ctl-name">Цена продажи в Маниле, опт</span><span class="ctl-val" id="sellOut"></span></div>
@@ -440,7 +440,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
    </div>
 
    <div class="card">
-    <div class="ctl-name">Остаётся своей компании с 1 кг</div>
+    <div class="ctl-name">Остаётся компании Талины в Маниле с 1 кг</div>
     <div class="kg-big"><span class="v" id="mRub">—</span><span class="u" id="mPhp"></span></div>
     <div class="bar" id="bar" role="img" aria-label="Из чего складывается цена продажи 1 кг"></div>
     <ul class="legend" id="legend"></ul>
@@ -453,7 +453,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
   <h2>Что это значит за год</h2>
   <p class="sec-lead">При объёме из верхнего блока, на котором выходит цель.</p>
   <div class="kpis">
-   <div class="kpi"><div class="l">Выручка своей компании</div><div class="v" id="kRev">—</div><div class="s">продажи в Маниле</div></div>
+   <div class="kpi"><div class="l">Выручка компании в Маниле</div><div class="v" id="kRev">—</div><div class="s">продажи в Маниле</div></div>
    <div class="kpi"><div class="l">Прибыль до налога</div><div class="v" id="kPre">—</div><div class="s">после содержания компании</div></div>
    <div class="kpi"><div class="l">Наша чистая прибыль</div><div class="v" id="kNet" style="color:var(--good)">—</div><div class="s">после налога 25%, команды и связей</div></div>
    <div class="kpi"><div class="l">Деньги в обороте</div><div class="v" id="kWc">—</div><div class="s">закупки на 3 месяца вперёд</div></div>
@@ -586,7 +586,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
     $("pUsS").textContent = `при ${fmt(roundT(T))} т в год, после налога, команды и связей`;
     $("splitTitle").textContent = `Куда уходит маржа в Маниле: ${mln(y.gross)} в год`;
     const parts = [
-      { n: "Нам", v: y.net, c: "var(--s5)" },
+      { n: "ГК «Талина»", v: y.net, c: "var(--s5)" },
       { n: "Своя команда в Маниле", v: y.team, c: "var(--accent)" },
       { n: "За связи и сопровождение", v: y.comm, c: "var(--s3)" },
       { n: "Налог на Филиппинах", v: y.tax, c: "var(--s2)" },
@@ -600,7 +600,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
     const max = Math.max(...rows.map(r => r.tot));
     $("pbLong").innerHTML = rows.map(r => {
       const on = Math.abs(r.pr - S.pr) < 1e-9 && r.term === S.term;
-      return `<div class="pb-row click${on ? " on" : ""}" data-pr="${r.pr}" data-term="${r.term}" role="button" tabindex="0"><span class="pb-l">${r.n} ↗<small>нам стоит ${mln(r.yr)} в год</small></span><div class="pb-bars"><div class="pb-bar" style="width:${r.tot / max * 100}%;background:${on ? "var(--good)" : "var(--s3)"}">${mln(r.tot)}</div></div></div>`;
+      return `<div class="pb-row click${on ? " on" : ""}" data-pr="${r.pr}" data-term="${r.term}" role="button" tabindex="0"><span class="pb-l">${r.n} ↗<small>Талине стоит ${mln(r.yr)} в год</small></span><div class="pb-bars"><div class="pb-bar" style="width:${r.tot / max * 100}%;background:${on ? "var(--good)" : "var(--s3)"}">${mln(r.tot)}</div></div></div>`;
     }).join("");
     $("pbLong").querySelectorAll(".pb-row").forEach(el => {
       const pick = () => { S.pr = +el.dataset.pr; S.term = +el.dataset.term; sync(); };
@@ -645,7 +645,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
     const seg = (v, c, label) => `<div style="width:${Math.max(v, 0) / max * 100}%;background:${c}">${label || ""}</div>`;
     $("barRu").innerHTML = seg(ru, "var(--s4)");
     $("barTr").innerHTML = seg(tr, "var(--s1)");
-    $("barDi").innerHTML = seg(plant, "var(--s1)", "заводу") + seg(own, "var(--s5)", own / max > .12 ? "своей компании" : "");
+    $("barDi").innerHTML = seg(plant, "var(--s1)", "заводу") + seg(own, "var(--s5)", own / max > .12 ? "компании в Маниле" : "");
     $("valRu").innerHTML = `${fmt(ru)} ₽`;
     $("valTr").innerHTML = `${fmt(tr)} ₽<small>${pct(tr)}</small>`;
     $("valDi").innerHTML = `${fmt(di)} ₽<small>${pct(di)}</small>`;
@@ -698,7 +698,7 @@ button:focus-visible, input:focus-visible, [role=button]:focus-visible { outline
       { n: "Пошлина", v: u.duty, c: "var(--s2)" },
       { n: "Порт, брокер, склад", v: S.cost, c: "var(--s3)" },
       { n: "Деньги в обороте", v: u.fin, c: "var(--s4)" },
-      { n: "Своей компании", v: Math.max(u.m, 0), c: "var(--s5)" },
+      { n: "Компании в Маниле", v: Math.max(u.m, 0), c: "var(--s5)" },
     ];
     const base = Math.max(S.sell, u.landed);
     $("bar").innerHTML = parts.map(p => `<div style="width:${Math.max(p.v, 0) / base * 100}%;background:${p.c}" title="${p.n}"></div>`).join("");
