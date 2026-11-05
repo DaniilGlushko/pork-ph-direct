@@ -126,6 +126,23 @@ svg.chart { width: 100%; height: auto; display: block; touch-action: none; }
 @media (max-width: 600px) { .chart text { font-size: 20px; } }
 .tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--card); font-size: 13px; padding: 6px 10px; border-radius: 8px; white-space: nowrap; transform: translate(-50%, -130%); display: none; font-variant-numeric: tabular-nums; }
 
+/* Comparison */
+.cmp-row { display: grid; grid-template-columns: 210px 1fr 120px; gap: 12px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+.cmp-row:first-of-type { border-top: 0; }
+@media (max-width: 640px) { .cmp-row { grid-template-columns: 1fr auto; } .cmp-row .cmp-bar { grid-column: 1 / -1; grid-row: 2; } .cmp-bar > div { font-size: 0; } }
+.cmp-name { font-weight: 700; color: var(--ink); }
+.cmp-name small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+.cmp-bar { display: flex; height: 30px; border-radius: 8px; overflow: hidden; background: var(--track); }
+.cmp-bar > div { height: 100%; transition: width .2s; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; }
+.cmp-val { text-align: right; font-weight: 800; font-size: 20px; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cmp-val small { display: block; font-size: 12px; font-weight: 700; color: var(--good); }
+.cmp-year { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+@media (max-width: 760px) { .cmp-year { grid-template-columns: 1fr; } }
+.cmp-year .kpi.hl { border-color: var(--good); background: var(--good-soft); }
+.cmp-year .kpi.hl .v { color: var(--good); }
+.cmp-ctl { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; margin-top: 8px; }
+@media (max-width: 640px) { .cmp-ctl { grid-template-columns: 1fr; } }
+
 /* Table */
 .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 table { border-collapse: collapse; width: 100%; font-size: 14px; }
@@ -176,6 +193,45 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 </section>
 
 <main class="wrap">
+
+ <section class="sec">
+  <h2>Россия, трейдеры или напрямую: сколько группа получает с 1 кг</h2>
+  <p class="sec-lead" id="cmpLead">Один и тот же килограмм тремя способами. Продукт и цены — из блока «Экономика одного килограмма» ниже.</p>
+  <div class="card">
+   <div class="cmp-row">
+    <div class="cmp-name">Продать в России<small>цена на внутреннем рынке</small></div>
+    <div class="cmp-bar" id="barRu"></div>
+    <div class="cmp-val" id="valRu">—</div>
+   </div>
+   <div class="cmp-row">
+    <div class="cmp-name">Экспорт через трейдеров<small>как в 2026: цена CFR минус фрахт</small></div>
+    <div class="cmp-bar" id="barTr"></div>
+    <div class="cmp-val" id="valTr">—</div>
+   </div>
+   <div class="cmp-row">
+    <div class="cmp-name">Напрямую, своя компания<small>заводу то же + маржа в Маниле</small></div>
+    <div class="cmp-bar" id="barDi"></div>
+    <div class="cmp-val" id="valDi">—</div>
+   </div>
+   <div class="cmp-ctl">
+    <div class="ctl">
+     <div class="ctl-head"><span class="ctl-name">Цена в России</span><span class="ctl-val" id="domOut"></span></div>
+     <input type="range" id="dom" min="80" max="300" step="1" aria-label="Цена в России, рублей за кг">
+     <div class="ctl-hint" id="domHint"></div>
+    </div>
+    <div class="ctl">
+     <div class="ctl-head"><span class="ctl-name">Фрахт до Манилы, рефконтейнер</span><span class="ctl-val" id="frOut"></span></div>
+     <input type="range" id="fr" min="2000" max="9000" step="100" aria-label="Фрахт, долларов за контейнер">
+     <div class="ctl-hint">платит завод, входит в цену CFR; ставку уточняет экспедитор</div>
+    </div>
+   </div>
+  </div>
+  <div class="cmp-year">
+   <div class="kpi"><div class="l" id="yLbl1">Сверх продажи в России, за год</div><div class="v" id="yTr">—</div><div class="s">экспорт через трейдеров</div></div>
+   <div class="kpi hl"><div class="l" id="yLbl2">Сверх продажи в России, за год</div><div class="v" id="yDi">—</div><div class="s">напрямую: завод + чистая прибыль своей компании</div></div>
+   <div class="kpi"><div class="l">Сейчас уходит посредникам, за год</div><div class="v" id="yMid">—</div><div class="s">маржа трейдера и импортёра, которую забирает своя компания</div></div>
+  </div>
+ </section>
 
  <section class="sec">
   <h2>Экономика одного килограмма</h2>
@@ -254,6 +310,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     <ul>
      <li><b>Цены завода</b> — фактические отгрузки МПК Атяшевский на Филиппины в феврале–июле 2026 года: 376 т, 14 контейнеров; щековина в среднем $1,89 за кг, грудинка $2,95–3,15 (CFR Манила). Подлопаточные рёбра — $2,25 по экспортному прайсу Талины.</li>
      <li><b>Цены продажи в Маниле:</b> опт импортной обрези для переработчиков ₱210–250 (партнёры в Маниле, октябрь 2026); импортная замороженная грудинка ₱300 в рознице (Минсельхоз Филиппин, 20.10.2026, <a href="https://context.ph/2026/10/20/da-moves-to-support-local-hog-producers-amid-low-farmgate-prices/">Context.ph</a>), опт ≈ 84% от розницы; рёбра — опт ₱290–330 за охлаждённые с поправкой на заморозку.</li>
+     <li><b>Цены в России</b> — данные Талины: щековина 91–176 ₽ за кг, в среднем ≈ 126 ₽ (февраль–июль 2026); грудинка н/к ≈ 204 ₽, б/к ≈ 231 ₽; подлопаточные рёбра 165 ₽ (октябрь 2026). <b>Фрахт</b> до Манилы — $5 000 за 40-футовый рефконтейнер (27 т), ставка уточняется у экспедитора.</li>
      <li><b>Пошлина:</b> 15% в квоте MAV (квота 2026 года — 204 210 т), 25% вне квоты.</li>
      <li><b>Порт, брокер и склад</b> — ₱20 с кг; портовые сборы за 40-футовый рефконтейнер около $1 070.</li>
      <li><b>Деньги в обороте</b> — 3 месяца под 12% годовых. <b>Содержание компании в Маниле</b> — 9 млн ₽ в год (<a href="https://daniilglushko.github.io/entity-budget-asia/">сравнение юрлиц</a>), уставный капитал $200 000 сверху. Налог на прибыль на Филиппинах 25%.</li>
@@ -272,18 +329,19 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   const FIXED = 9e6, TAX = 0.25, RATE = 0.12, CYCLE_M = 3, CONT_T = 27;
 
   // Ассортимент 2026: щековина 295,4 т по $1,89; грудинка б/к 54 т по $3,15; н/к 27 т по $2,95
+  // Цена в России: щековина и грудинка — средние за февраль–июль 2026, рёбра — октябрь 2026 (данные Талины)
   const PRESETS = [
-    { id: "mix", name: "Как в 2026", sub: "78% щековина, 22% грудинка", cfr: 2.15, sell: 219 },
-    { id: "jowl", name: "Щековина", sub: "на сисиг", cfr: 1.89, sell: 210 },
-    { id: "ribs", name: "Подлопаточные рёбра", sub: "барбекю, синиганг", cfr: 2.25, sell: 218 },
+    { id: "mix", name: "Как в 2026", sub: "78% щековина, 22% грудинка", cfr: 2.15, sell: 219, dom: 147, domSrc: "средняя по ассортименту, февраль–июль 2026" },
+    { id: "jowl", name: "Щековина", sub: "на сисиг", cfr: 1.89, sell: 210, dom: 126, domSrc: "средняя за февраль–июль 2026" },
+    { id: "ribs", name: "Подлопаточные рёбра", sub: "барбекю, синиганг", cfr: 2.25, sell: 218, dom: 165, domSrc: "октябрь 2026" },
   ];
 
-  const S = { goal: 100, cfr: 2.15, sell: 219, duty: 0.15, cost: 20, preset: "mix" };
+  const S = { goal: 100, cfr: 2.15, sell: 219, duty: 0.15, cost: 20, dom: 147, fr: 5000, preset: "mix" };
 
   // Настройки из ссылки
   try {
     const h = new URLSearchParams(location.hash.slice(1));
-    for (const k of ["goal", "cfr", "sell", "duty", "cost"]) if (h.has(k) && !isNaN(+h.get(k))) S[k] = +h.get(k);
+    for (const k of ["goal", "cfr", "sell", "duty", "cost", "dom", "fr"]) if (h.has(k) && !isNaN(+h.get(k))) S[k] = +h.get(k);
     if (h.has("p")) S.preset = h.get("p");
   } catch (e) {}
 
@@ -320,7 +378,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     const b = document.createElement("button");
     b.className = "preset"; b.dataset.id = p.id;
     b.innerHTML = `${p.name}<small>${p.sub}</small>`;
-    b.onclick = () => { S.cfr = p.cfr; S.sell = p.sell; S.preset = p.id; sync(); };
+    b.onclick = () => { S.cfr = p.cfr; S.sell = p.sell; S.dom = p.dom; S.preset = p.id; sync(); };
     pw.appendChild(b);
   });
 
@@ -330,16 +388,48 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     el.addEventListener("input", () => { S[key] = +el.value; if (key === "cfr" || key === "sell") S.preset = ""; render(); });
   };
   bindRange("goal", "goal"); bindRange("cfr", "cfr"); bindRange("sell", "sell"); bindRange("cost", "cost");
+  bindRange("dom", "dom"); bindRange("fr", "fr");
   document.querySelectorAll("#duty button").forEach(b => b.onclick = () => { S.duty = +b.dataset.v; render(); });
   document.querySelectorAll("#goalChips .chip").forEach(b => b.onclick = () => { S.goal = +b.dataset.v; sync(); });
 
   function sync() {
     $("goal").value = S.goal; $("cfr").value = S.cfr; $("sell").value = S.sell; $("cost").value = S.cost;
+    $("dom").value = S.dom; $("fr").value = S.fr;
     render();
   }
 
+  function renderCompare(u, T) {
+    const frKg = S.fr / (CONT_T * 1000) * RUB_USD;           // фрахт, ₽ с кг
+    const plant = S.cfr * RUB_USD - frKg;                     // заводу на выходе при экспорте
+    const own = Math.max(u.mRub, 0);                          // своей компании с кг, до налога и содержания
+    const ru = S.dom, tr = plant, di = plant + own;
+    const max = Math.max(ru, tr, di) * 1.02;
+    const pct = v => v > ru ? `+${fmt((v / ru - 1) * 100)}% к России` : "";
+    const seg = (v, c, label) => `<div style="width:${Math.max(v, 0) / max * 100}%;background:${c}">${label || ""}</div>`;
+    $("barRu").innerHTML = seg(ru, "var(--s4)");
+    $("barTr").innerHTML = seg(tr, "var(--s1)");
+    $("barDi").innerHTML = seg(plant, "var(--s1)", "заводу") + seg(own, "var(--s5)", own / max > .12 ? "своей компании" : "");
+    $("valRu").innerHTML = `${fmt(ru)} ₽`;
+    $("valTr").innerHTML = `${fmt(tr)} ₽<small>${pct(tr)}</small>`;
+    $("valDi").innerHTML = `${fmt(di)} ₽<small>${pct(di)}</small>`;
+    $("domOut").textContent = `${fmt(S.dom)} ₽ с кг`;
+    $("frOut").textContent = `$${fmt(S.fr)} = ${fmt(frKg, 1)} ₽ с кг`;
+    const p = PRESETS.find(x => x.id === S.preset);
+    $("domHint").textContent = p && p.dom === S.dom ? `данные Талины, ${p.domSrc}` : "своё значение";
+    if (T) {
+      const kg = T * 1000, y = year(T, u);
+      const lbl = `Сверх продажи в России, ${fmt(roundT(T))} т в год`;
+      $("yLbl1").textContent = lbl; $("yLbl2").textContent = lbl;
+      $("yTr").textContent = tr > ru ? "+" + mln(kg * (tr - ru)) : mln(0);
+      $("yDi").textContent = "+" + mln(Math.max(kg * (tr - ru), 0) + Math.max(y.net, 0));
+      $("yMid").textContent = mln(kg * own);
+    } else {
+      ["yTr", "yDi", "yMid"].forEach(id => $(id).textContent = "—");
+    }
+  }
+
   function render() {
-    ["goal", "cfr", "sell", "cost"].forEach(id => fill($(id)));
+    ["goal", "cfr", "sell", "cost", "dom", "fr"].forEach(id => fill($(id)));
     const u = unit();
     const T = needTonnes(S.goal * 1e6, u);
     const ok = isFinite(T);
@@ -394,10 +484,11 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
       $("ctrs").innerHTML = "";
     }
 
+    renderCompare(u, ok ? T : null);
     drawChart(u, ok ? T : null);
     drawTable(u, ok ? T : null);
 
-    try { history.replaceState(null, "", "#" + new URLSearchParams({ goal: S.goal, cfr: S.cfr, sell: S.sell, duty: S.duty, cost: S.cost, p: S.preset })); } catch (e) {}
+    try { history.replaceState(null, "", "#" + new URLSearchParams({ goal: S.goal, cfr: S.cfr, sell: S.sell, duty: S.duty, cost: S.cost, dom: S.dom, fr: S.fr, p: S.preset })); } catch (e) {}
   }
 
   // График
