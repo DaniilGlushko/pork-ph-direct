@@ -171,7 +171,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   <div class="goal">
    <div class="goal-box">
     <p class="lbl">Хотим заработать за год, чистыми</p>
-    <div class="goal-val"><span id="goalOut">100</span> <small>млн ₽</small></div>
+    <div class="goal-val"><span id="goalOut">100</span> <small id="goalUnit">млн ₽</small></div>
     <input type="range" id="goal" min="10" max="1000" step="10" value="100" aria-label="Цель по чистой прибыли, млн рублей">
     <div class="chips" id="goalChips">
      <button class="chip" data-v="50">50 млн</button>
@@ -434,7 +434,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
     const T = needTonnes(S.goal * 1e6, u);
     const ok = isFinite(T);
 
-    $("goalOut").textContent = fmt(S.goal);
+    $("goalOut").textContent = S.goal >= 1000 ? fmt(S.goal / 1000, S.goal % 1000 ? 1 : 0) : fmt(S.goal);
+    $("goalUnit").textContent = S.goal >= 1000 ? "млрд ₽" : "млн ₽";
     document.querySelectorAll("#goalChips .chip").forEach(b => b.setAttribute("aria-pressed", +b.dataset.v === S.goal));
     document.querySelectorAll(".preset").forEach(b => b.setAttribute("aria-pressed", b.dataset.id === S.preset));
     document.querySelectorAll("#duty button").forEach(b => b.setAttribute("aria-pressed", Math.abs(+b.dataset.v - S.duty) < 1e-9));
@@ -525,7 +526,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
       s += `<text x="${x(t26) + 4}" y="${H - B - 8}">темп 2026</text>`;
     }
     s += `<line x1="${L}" x2="${W - R}" y1="${y(goal)}" y2="${y(goal)}" stroke="var(--accent)" stroke-dasharray="6 4" stroke-width="1.5"/>`;
-    s += `<text x="${L + 6}" y="${y(goal) - 6}" style="fill:var(--accent);font-weight:600">цель ${fmt(S.goal)} млн ₽</text>`;
+    s += `<text x="${L + 6}" y="${y(goal) - 6}" style="fill:var(--accent);font-weight:600">цель ${mln(S.goal * 1e6)}</text>`;
     const area = `M${x(0)},${y(0)} ` + pts.map(p => `L${x(p[0])},${y(Math.max(p[1], 0))}`).join(" ") + ` L${x(maxT)},${y(0)} Z`;
     s += `<path d="${area}" fill="var(--good)" opacity=".12"/>`;
     s += `<path d="${pts.map((p, i) => (i ? "L" : "M") + x(p[0]) + "," + y(p[1])).join(" ")}" fill="none" stroke="var(--good)" stroke-width="2.5"/>`;
